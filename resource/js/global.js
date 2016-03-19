@@ -2,13 +2,25 @@
 
 $(document).ready( function(){
 	 $("body").removeClass("loader");
-	 $("body").addClass("show-page-1");
+	 $("body").addClass("show-page-inicial");
 	//alert("carregou!");
-	ianText("Ol·",0);
+	ianText("Ol√°",0);
+	
+	$("[href='#sobre']").on("click", function(){
+		$("body").removeClass("show-page-inicial");
+		$("body").addClass("show-page-sobre");
+	});	
+	
+	
+	$("[href='#']").on("click", function(){
+		$("body").addClass("show-page-inicial");
+		$("body").removeClass("show-page-sobre");
+	});
+	
 });
 
 /**
-Insere texto no bal„o de mensagem do personagem
+Insere texto no bal√£o de mensagem do personagem
 **/
 function ianText(text,time){	
 	$(".bubble").text(text);
