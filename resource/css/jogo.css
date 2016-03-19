@@ -112,19 +112,19 @@ background-color:rgba(10, 236, 53, 0.36);;
   -moz-user-select: none;      /* Firefox */
   -ms-user-select: none;       /* IE/Edge */
   user-select: none;           /* non-prefixed version, currently
-                                  not supported by any browser */
-left:37px;
-box-shadow: 0 0 6px #B2B2B2;
-position: relative;
-min-width: 10px;
-width: -moz-fit-content;
-font-size: 8px;
-font-family: bubbleFont;
-min-height: 8px;
-padding: 5px;
-background: #FFF none repeat scroll 0% 0%;
-border-radius: 7px;
-border: 1px solid #7F7F7F;
+                                 not supported by any browser */
+	left:37px;
+	position: relative;
+	min-width: 10px;
+	width: -moz-fit-content;
+	font-size: 8px;
+	font-family: bubbleFont;
+	min-height: 8px;
+	padding: 5px;
+	background: #FFF none repeat scroll 0% 0%;
+	border-radius: 7px;
+	border: 1px solid #7F7F7F;
+	color: #4E4E4E;
 }
 
 .bubble:after
@@ -137,7 +137,7 @@ border-color: transparent #FFFFFF;
 display: block;
 width: 0;
 z-index: 1;
-left: -12px;
+left: -11px;
 top: 9px;
 }
 

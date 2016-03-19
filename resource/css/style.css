@@ -26,11 +26,17 @@ display:inherit;
 .navbar-collapse{
 text-align: right;
 }
-
 .navbar{
 	font-family: titleFont;
 }
-
 body.loader,body.show-page-inicial{
 	background-color: #000 !important;
+}
+
+
+.heart-icon{
+	background-image: url("../img/life.png");
+	width:32px;
+	height:32px;
+	background-repeat: no-repeat;
 }
