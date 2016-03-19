@@ -1,10 +1,10 @@
 @font-face {
     font-family: bubbleFont;
-    src: url('../fonts/Fipps-Regular.otf');
+    src: url('./../fonts/Fipps-Regular.otf');
 }
 @font-face {
     font-family: titleFont;
-    src: url('../fonts/04B_30__.TTF');
+    src: url('./../fonts/04B_30__.TTF');
 }
 .loader *, #loader{
 display:none;
@@ -20,7 +20,7 @@ display:inherit;
 [id^=pagina]{
 display:none;
 }
-.show-page-1 > #pagina-1,.show-page-2 > #pagina-2,.show-page-3 > #pagina-3 {
+.show-page-inicial > #pagina-inicial,.show-page-sobre > #pagina-sobre,.show-page-projetos > #pagina-projetos ,.show-page-contato > #pagina-contato {
 display:inherit;
 }
 .navbar-collapse{
@@ -31,6 +31,6 @@ text-align: right;
 	font-family: titleFont;
 }
 
-body{
+body.loader,body.show-page-inicial{
 	background-color: #000 !important;
 }
