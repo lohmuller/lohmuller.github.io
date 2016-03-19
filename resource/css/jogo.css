@@ -13,7 +13,7 @@
 
 	position:relative;
 	margin: 0 auto;
-	background-image: url("/../img/cenario2.png");
+	background-image: url("../img/cenario2.png");
 	width:225px;
 	height:210px;
 	background-repeat: no-repeat;
@@ -27,7 +27,7 @@
 	left:32px;
 	width: 32px;
 	height: 32px;
-	background-image: url("/../img/ian.png");
+	background-image: url("../img/ian.png");
 	background-position: -32px 0px;
 }
 
