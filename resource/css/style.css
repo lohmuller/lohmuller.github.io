@@ -1,10 +1,10 @@
 @font-face {
     font-family: bubbleFont;
-    src: url('/../fonts/Fipps-Regular.otf');
+    src: url('../fonts/Fipps-Regular.otf');
 }
 @font-face {
     font-family: titleFont;
-    src: url('/../fonts/04B_30__.TTF');
+    src: url('../fonts/04B_30__.TTF');
 }
 .loader *, #loader{
 display:none;
