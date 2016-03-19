@@ -1,0 +1,36 @@
+@font-face {
+    font-family: bubbleFont;
+    src: url('/../fonts/Fipps-Regular.otf');
+}
+@font-face {
+    font-family: titleFont;
+    src: url('/../fonts/04B_30__.TTF');
+}
+.loader *, #loader{
+display:none;
+}
+.loader #loader {
+display:inherit;
+}
+#loader{
+	color:#FFF;	
+	text-align: center;
+	margin-top: 100px;
+}
+[id^=pagina]{
+display:none;
+}
+.show-page-1 > #pagina-1,.show-page-2 > #pagina-2,.show-page-3 > #pagina-3 {
+display:inherit;
+}
+.navbar-collapse{
+text-align: right;
+}
+
+.navbar{
+	font-family: titleFont;
+}
+
+body{
+	background-color: #000 !important;
+}

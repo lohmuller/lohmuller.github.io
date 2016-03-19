@@ -1,0 +1,156 @@
+
+#pagina-1{
+	background-color: #000;
+	width:100%;
+	height:100%;
+}
+
+#cenario{
+	    -ms-transform: scale(2,2); /* IE 9 */
+    -webkit-transform: scale(2,2); /* Safari */
+    transform: scale(2,2);
+	top: 150px;
+
+	position:relative;
+	margin: 0 auto;
+	background-image: url("/../img/cenario2.png");
+	width:225px;
+	height:210px;
+	background-repeat: no-repeat;
+	padding:16px;
+}
+
+#ian {
+
+	position:absolute;
+	top:64px;
+	left:32px;
+	width: 32px;
+	height: 32px;
+	background-image: url("/../img/ian.png");
+	background-position: -32px 0px;
+}
+
+.balao-texto{
+box-shadow: 0 0 6px #B2B2B2;
+border-radius: 5px;
+	background-color: #fff;
+	position:absolute;
+	top:-10px;
+	left:32px;
+	font-size:12px;
+	font-family:Arial;
+	padding:4px;
+}
+
+#obj-estante{
+	top: 32px;
+	left:16px;
+	width:32px;
+	height:32px;
+}
+
+#obj-computador{
+	top: 33px;
+	left:50px;
+	width:16px;
+	height:19px;
+}
+
+#obj-arquivo{
+	top: 33px;
+	left:97px;
+	width:15px;
+	height:31px;
+}
+
+#obj-arquivo{
+	top: 33px;
+	left:97px;
+	width:15px;
+	height:31px;
+}
+
+#obj-televisao{
+	top: 32px;
+	left:114px;
+	width:29px;
+	height:32px;
+}
+
+#obj-cama{
+	top: 140px;
+	left:53px;
+	width:26px;
+	height:27px;
+}
+
+#obj-janela{
+	top: 20px;
+	left:81px;
+	width:30px;
+	height:20px;
+}
+
+[id^="obj-"]{
+	transition: 0.2s;
+	position:absolute;
+	background-color:rgba(10, 236, 53, 0.0);
+}
+[id^="obj-"]:hover{
+background-color:rgba(10, 236, 53, 0.36);;
+}
+
+
+
+
+.bubble
+{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+left:37px;
+box-shadow: 0 0 6px #B2B2B2;
+position: relative;
+min-width: 10px;
+width: -moz-fit-content;
+font-size: 8px;
+font-family: bubbleFont;
+min-height: 8px;
+padding: 5px;
+background: #FFF none repeat scroll 0% 0%;
+border-radius: 7px;
+border: 1px solid #7F7F7F;
+}
+
+.bubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 5px 12px 5px 0;
+border-color: transparent #FFFFFF;
+display: block;
+width: 0;
+z-index: 1;
+left: -12px;
+top: 9px;
+}
+
+.bubble:before
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 5px 12px 5px 0;
+border-color: transparent #7F7F7F;
+display: block;
+width: 0;
+z-index: 0;
+left: -13px;
+top: 9px;
+}
