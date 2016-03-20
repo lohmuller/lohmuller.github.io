@@ -1,6 +1,6 @@
 
 
-$(document).ready( function(){
+$(window).on('load', function() {
 	 $("body").removeClass("loader");
 	 $("body").addClass("show-page-inicial");
 	//alert("carregou!");
@@ -41,9 +41,19 @@ function ianText(text,time){
 }
 
 
-$.getJSON("/projetos.json", function(data){
+$.getJSON("/projetos/projetos.json", function(data){
+	var campoPadrao = $(".projeto-thumb").parent().html();
+	$(".projeto-thumb").remove();
+	var tempCampo = '';
 	$.each(data,function(key,value){
-		//alert(value['titulo']);
+		tempCampo = campoPadrao;
+		$.each(value,function(key2,value2){
+			tempCampo = tempCampo.replace("{"+key2+"}", value2); 
+		});
+		$("#pagina-projetos").append(tempCampo);
 	});
+	
+
+	
 });
 	
