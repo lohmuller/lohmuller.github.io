@@ -2,61 +2,61 @@
 	{
 		"titulo": "Pelicano Motion",
 		"img":	"pelicano.png",
-		"description": "descricao aaa"
+		"description": "Website desenvolvido utilizando Wordpress para uma empresa de finalização de videos do Rio de Janeiro"
 	},
 		{
 		"titulo": "Zunime",
 		"img":	"allegro.gif",
-		"description": "descricao bbb"
+		"description": "Jogo desenvolvido com C e Allegro para universidade"
 	},
 		{
 		"titulo": "Zunime U",
 		"img":	"Zunime U.png",
-		"description": "descricao ccc"
+		"description": "Jogo desenvolvido com Unity em 2D"
 	},
 		{
 		"titulo": "Carro Mais TV",
 		"img":	"carromais.jpg",
-		"description": "descricao ccc"
+		"description": "Desenvolvimento do website em wordpress para um programa de TV de Lauro de Freitas"
 	},
 		{
 		"titulo": "Cheiro e Pão",
 		"img":	"cheiro-e-pão.png",
-		"description": "descricao ccc"
+		"description": "Desenvolvimento do website em wordpress com parceria da Agência Bahiana"
 	},
 		{
 		"titulo": "Elitte Taxi",
 		"img":	"elittetaxi.jpg",
-		"description": "descricao ccc"
+		"description": "Sistema desenvolvido durante estágio, utilizando Zend Framework no qual gerenciava ocorrências e uma parte financeira"
 	},
 		{
 		"titulo": "Nortesul",
 		"img":	"gruponortesul1.png",
-		"description": "descricao ccc"
+		"description": "Sistema desenvolvido para gerência de associados"
 	},
 		{
 		"titulo": "Knights And Merchants",
 		"img":	"KnightsMerchants.jpg",
-		"description": "descricao ccc"
+		"description": "Parte do projeto no qual fui responsável para tradução para o Português"
 	},
 		{
-		"titulo": "Knights And Merchants",
+		"titulo": "Litoral Contabilidade",
 		"img":	"litoral-contabilidade.png",
-		"description": "descricao ccc"
+		"description": "Website desenvolvido em Wordpress"
 	},
 		{
 		"titulo": "My Fandango",
 		"img":	"myfandango.png",
-		"description": "descricao ccc"
+		"description": "Website desenvolvido em Wordpress e participação no projeto do Jogo em Unity"
 	},
 		{
 		"titulo": "Salve a Seleção",
 		"img":	"salve-a-selecao.jpg",
-		"description": "descricao ccc"
+		"description": "Desenvolvimento do jogo em Flash usando ActionScript 3 para o jogo "
 	},
 		{
 		"titulo": "Trio Porradão",
 		"img":	"trio-porradao.png",
-		"description": "descricao ccc"
+		"description": "Website feito em Flash para Trio Elétrico de Salvador, Bahia"
 	}
 ]
