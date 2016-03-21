@@ -2,8 +2,14 @@
 
 $(window).on('load', function() {
 	 $("body").removeClass("loader");
-	 $("body").addClass("show-page-inicial");
-	//alert("carregou!");
+	 
+	 var target = window.location.hash;
+	 if(target[0] == "#"){
+		 target = target.replace("#", "");
+		 $("body").addClass("show-page-"+target);
+	 } else {
+		$("body").addClass("show-page-inicial");
+	 }
 	ianText("Olá",0);
 	
 	$("[href='#sobre']").on("click", function(){
@@ -18,17 +24,10 @@ $(window).on('load', function() {
 	$("[href='#']").on("click", function(){
 		setPage(this, "inicial");
 	});
-	
 });
 
-function setPage(obj, target){
-	$("body").removeClass("show-page-inicial");
-	$("body").removeClass("show-page-sobre");
-	$("body").removeClass("show-page-projetos");
-	$("body").removeClass("show-page-contato");
-	$(".active").removeClass("active");
-	$(obj).parents("li").addClass("active");
-	$("body").addClass("show-page-"+target);
+function setPage(obj, target){	
+	sairJogo(obj, target);
 }
 
 
@@ -39,6 +38,40 @@ function ianText(text,time){
 	$(".bubble").text(text);
 	//	$(".bubble").textillate({ in: { effect: 'rollIn' } });
 }
+
+
+function sairJogo(obj, target) {
+	var config = {}
+	if(target == 'inicial'){
+				$("body").removeClass("show-page-inicial");
+			$("body").removeClass("show-page-sobre");
+			$("body").removeClass("show-page-projetos");
+			$("body").removeClass("show-page-contato");
+			$(".active").removeClass("active");
+			$(obj).parents("li").addClass("active");
+			$("body").addClass("show-page-"+target);
+		config = {
+			"left": "0px",
+			"opacity": 1
+		}
+	} else {
+		config = {
+			"left": "-80px",
+			"opacity": -10
+		}
+	}
+	
+     $('#cenario').animate(config, 600,	 function(){
+			$("body").removeClass("show-page-inicial");
+			$("body").removeClass("show-page-sobre");
+			$("body").removeClass("show-page-projetos");
+			$("body").removeClass("show-page-contato");
+			$(".active").removeClass("active");
+			$(obj).parents("li").addClass("active");
+			$("body").addClass("show-page-"+target);
+    });
+}
+
 
 
 $.getJSON("/projetos/projetos.json", function(data){

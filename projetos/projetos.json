@@ -1,17 +1,62 @@
 [
 	{
 		"titulo": "Pelicano Motion",
-		"img":	"algo.png",
+		"img":	"pelicano.png",
 		"description": "descricao aaa"
 	},
 		{
-		"titulo": "HireAPirate",
-		"img":	"algo.png",
+		"titulo": "Zunime",
+		"img":	"allegro.gif",
 		"description": "descricao bbb"
 	},
 		{
 		"titulo": "Zunime U",
-		"img":	"algo.png",
+		"img":	"Zunime U.png",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Carro Mais TV",
+		"img":	"carromais.jpg",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Cheiro e Pão",
+		"img":	"cheiro-e-pão.png",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Elitte Taxi",
+		"img":	"elittetaxi.jpg",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Nortesul",
+		"img":	"gruponortesul1.png",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Knights And Merchants",
+		"img":	"KnightsMerchants.jpg",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Knights And Merchants",
+		"img":	"litoral-contabilidade.png",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "My Fandango",
+		"img":	"myfandango.png",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Salve a Seleção",
+		"img":	"salve-a-selecao.jpg",
+		"description": "descricao ccc"
+	},
+		{
+		"titulo": "Trio Porradão",
+		"img":	"trio-porradao.png",
 		"description": "descricao ccc"
 	}
 ]

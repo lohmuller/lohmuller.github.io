@@ -37,23 +37,21 @@ Carregando...
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
+			<span class="sr-only">Navegação</span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand active" href="#">Ian</a>
+		  <a class="navbar-brand active" href="#">Ian</a>	
+			<div style="display: inline-flex; padding-top: 10px;">
+			<div class="heart-icon"></div>
+			<div class="heart-icon"></div>
+			<div class="heart-icon"></div>
+			</div>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbar-collapse">
-		  <ul class="nav navbar-nav">
-			<li style="display: inline-flex; padding-top: 10px;">
-			<div class="heart-icon"></div>
-			<div class="heart-icon"></div>
-			<div class="heart-icon"></div>
-			</li>
-		  </ul>
 
 		  <ul class="nav navbar-nav navbar-right">
 			<li><a href="#sobre">Sobre </a></li>
@@ -102,16 +100,18 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
 
 	<div style="display:none;">
 		<div class="panel panel-default projeto-thumb">
-		  <div class="panel-body" style="display:inline-flex;">
-			<div style="width:80px;height:80px">
-				<img src="/projetos/{img}"style="width:80px;height:80px">
+		 <div class="panel-heading">{titulo}</div>
+		  <div class="panel-body">
+		  <!-- <div><h4>titulo</h4></div><hr/> -->
+		  
+		  <div style="display:inline-flex;">
+			<div class="thumbnail" style="width:80px;height:80px">
+				<img src="/projetos/{img}" alt="Miniatura">
 			</div>
 			<div style="padding:10px">			
-				titulo: {titulo} <br>
-				descrição: {description} <br>
+				{description}
 			</div>
-
-			
+			</div>
 		  </div>
 		</div>
 	</div>
