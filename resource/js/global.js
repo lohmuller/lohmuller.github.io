@@ -29,9 +29,10 @@ function movePersonagem(personagem, x, y, speed){
 
 	$(personagem).css("transition-property","top, left");
 	$(personagem).css("transition-duration","0.29s");
+	var targetX = 50;
+	var targetY = 100;
 	
-	
-	setInterval(function(){ 
+	var myVar = setInterval(function(){ 
 		var personagem = $("#ian");
 		if(personagem.length <= 0 ) {alert("não existe!"); return;}
 		var frame = parseInt($(personagem).attr("data-frame"));
@@ -39,16 +40,40 @@ function movePersonagem(personagem, x, y, speed){
 		if($(personagem).attr("data-frame") > 1){
 			$(personagem).attr("data-frame" , "0");
 		}
+
 		var posTop = parseInt($(personagem).css("top"));
-		//alert(posTop);
-		posTop += 5;
+		var posLeft = parseInt($(personagem).css("left"));
+		
+		if(targetX > posLeft) {
+			posLeft += 5;
+			$(personagem).attr("data-direction" , "direita");
+		} else if(targetX < posLeft) {
+			posLeft -= 5;
+			$(personagem).attr("data-direction" , "esquerda");
+		}
+		else if(targetY > posTop) {
+			posTop += 5;
+			$(personagem).attr("data-direction" , "baixo");
+		} else if(targetY < posTop) {
+			posTop -= 5;
+			$(personagem).attr("data-direction" , "cima");
+		} else {
+			clearInterval(myVar);
+			$(personagem).attr("data-position" , "parado");
+			$(personagem).attr("data-frame" , "0");
+			return; 
+		}
+		
+
 		$(personagem).css("top", posTop+"px");
+		$(personagem).css("left", posLeft+"px");
 		
 	}, 200);
 
 }
 
 	$("#ian").css("top","32px");
+	$("#ian").css("left","32px");
 	movePersonagem("#ian",3,3,100);
 	
 	
