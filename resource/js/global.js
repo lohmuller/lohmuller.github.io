@@ -61,6 +61,7 @@ function movePersonagem(personagem, x, y, speed){
 			clearInterval(myVar);
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
+			ianText("Dollynho",0);
 			return; 
 		}
 		
