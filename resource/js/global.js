@@ -24,6 +24,19 @@ $(window).on('load', function() {
 	$("[href='#']").on("click", function(){
 		setPage(this, "inicial");
 	});
+	
+	
+setInterval(function(){ 
+	var personagem = $("#ian");
+	if(personagem.length <= 0 ) {alert("não existe!"); return;}
+	var frame = parseInt($(personagem).attr("data-frame"));
+	$(personagem).attr("data-frame", (frame+1));
+	if($(personagem).attr("data-frame") > 1){
+		$(personagem).attr("data-frame" , "0");
+	}
+}, 500);
+
+	
 });
 
 function setPage(obj, target){	

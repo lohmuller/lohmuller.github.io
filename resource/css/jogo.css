@@ -1,3 +1,41 @@
+[data-direction="baixo"][data-position="parado"][data-frame="0"]{
+	background-position: -32px 0px;
+}
+[data-direction="direita"][data-position="parado"][data-frame="0"]{
+	background-position: -32px -64px
+}
+[data-direction="esquerda"][data-position="parado"][data-frame="0"]{
+	background-position: -32px -32px
+}
+[data-direction="cima"][data-position="parado"][data-frame="0"]{
+	background-position: -32px -96px;
+}
+
+[data-direction="baixo"][data-position="andando"][data-frame="0"]{
+	background-position: 0px 0px;
+}
+[data-direction="baixo"][data-position="andando"][data-frame="1"]{
+	background-position: -64px 0px;
+}
+
+[data-direction="esquerda"][data-position="andando"][data-frame="0"]{
+	background-position: 0px -32px
+}
+[data-direction="esquerda"][data-position="andando"][data-frame="1"]{
+	background-position: -64px -32px
+}
+
+[data-direction="direita"][data-position="andando"][data-frame="0"]{
+	background-position: 0px -64px
+}
+[data-direction="direita"][data-position="andando"][data-frame="1"]{
+	background-position: -64px -64px
+}
+
+
+
+
+
 
 #pagina-1{
 	background-color: #000;
@@ -28,7 +66,6 @@
 	width: 32px;
 	height: 32px;
 	background-image: url("../img/ian.png");
-	background-position: -32px 0px;
 }
 
 .balao-texto{
