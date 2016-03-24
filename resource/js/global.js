@@ -28,9 +28,14 @@ $(window).on('load', function() {
 function movePersonagem(personagem, x, y, speed){
 
 	$(personagem).css("transition-property","top, left");
-	$(personagem).css("transition-duration","0.13s");
-	var targetX = 3*32;
-	var targetY = 3*32;
+	$(personagem).css("transition-duration","0.7s");
+	var dist = 32;
+	var targetX = x*dist;
+	var targetY = y*dist;
+	dist = dist/4;
+	
+	var posTop = parseInt($(personagem).css("top"));
+	var posLeft = parseInt($(personagem).css("left"));
 	
 	var myVar = setInterval(function(){ 
 		var personagem = $("#ian");
@@ -39,43 +44,39 @@ function movePersonagem(personagem, x, y, speed){
 		$(personagem).attr("data-frame", (frame+1));
 		if($(personagem).attr("data-frame") > 1){
 			$(personagem).attr("data-frame" , "0");
-		}
-
-		var posTop = parseInt($(personagem).css("top"));
-		var posLeft = parseInt($(personagem).css("left"));
+		}		
 		
 		if(targetX > posLeft) {
-			posLeft += 4;
+			posLeft += dist;
 			$(personagem).attr("data-direction" , "direita");
 		} else if(targetX < posLeft) {
-			posLeft -= 4;
+			posLeft -= dist;
 			$(personagem).attr("data-direction" , "esquerda");
 		}
 		else if(targetY > posTop) {
-			posTop += 4;
+			posTop +=  dist;
 			$(personagem).attr("data-direction" , "baixo");
 		} else if(targetY < posTop) {
-			posTop -= 4;
+			posTop -= dist;
 			$(personagem).attr("data-direction" , "cima");
 		} else {
 			clearInterval(myVar);
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
-			ianText("Messias",0);
+			ianText("Kaehryannn",0);
 			return; 
 		}
-		
 
 		$(personagem).css("top", posTop+"px");
 		$(personagem).css("left", posLeft+"px");
 		
-	}, 200);
+	}, 400);
 
 }
 
 	$("#ian").css("top","64px");
 	$("#ian").css("left","64px");
-	movePersonagem("#ian",3,3,100);
+	movePersonagem("#ian",6,6,1);
 	
 	
 });
