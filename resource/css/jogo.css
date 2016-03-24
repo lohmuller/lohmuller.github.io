@@ -51,9 +51,9 @@
 
 	position:relative;
 	margin: 0 auto;
-	background-image: url("../img/cenario2.png");
-	width:225px;
-	height:210px;
+	background-image: url("../img/cenario.png");
+	width:256px;
+	height:256px;
 	background-repeat: no-repeat;
 	padding:16px;
 }

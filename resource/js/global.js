@@ -28,9 +28,9 @@ $(window).on('load', function() {
 function movePersonagem(personagem, x, y, speed){
 
 	$(personagem).css("transition-property","top, left");
-	$(personagem).css("transition-duration","0.29s");
-	var targetX = 50;
-	var targetY = 100;
+	$(personagem).css("transition-duration","0.13s");
+	var targetX = 3*32;
+	var targetY = 3*32;
 	
 	var myVar = setInterval(function(){ 
 		var personagem = $("#ian");
@@ -45,23 +45,23 @@ function movePersonagem(personagem, x, y, speed){
 		var posLeft = parseInt($(personagem).css("left"));
 		
 		if(targetX > posLeft) {
-			posLeft += 5;
+			posLeft += 4;
 			$(personagem).attr("data-direction" , "direita");
 		} else if(targetX < posLeft) {
-			posLeft -= 5;
+			posLeft -= 4;
 			$(personagem).attr("data-direction" , "esquerda");
 		}
 		else if(targetY > posTop) {
-			posTop += 5;
+			posTop += 4;
 			$(personagem).attr("data-direction" , "baixo");
 		} else if(targetY < posTop) {
-			posTop -= 5;
+			posTop -= 4;
 			$(personagem).attr("data-direction" , "cima");
 		} else {
 			clearInterval(myVar);
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
-			ianText("Dollynho",0);
+			ianText("Nunha",0);
 			return; 
 		}
 		
@@ -73,8 +73,8 @@ function movePersonagem(personagem, x, y, speed){
 
 }
 
-	$("#ian").css("top","32px");
-	$("#ian").css("left","32px");
+	$("#ian").css("top","64px");
+	$("#ian").css("left","64px");
 	movePersonagem("#ian",3,3,100);
 	
 	
