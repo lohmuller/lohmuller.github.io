@@ -32,6 +32,13 @@
 	background-position: -64px -64px
 }
 
+[data-direction="cima"][data-position="andando"][data-frame="0"]{
+		background-position: 0px -96px;
+}
+[data-direction="cima"][data-position="andando"][data-frame="1"]{
+		background-position: -64px -96px;
+}
+
 
 
 
@@ -81,52 +88,38 @@ border-radius: 5px;
 }
 
 #obj-estante{
-	top: 32px;
-	left:16px;
+	top: 48px;
+	left:32px;
 	width:32px;
-	height:32px;
+	height:28px;
 }
 
 #obj-computador{
-	top: 33px;
-	left:50px;
+	top: 49px;
+	left:72px;
 	width:16px;
 	height:19px;
 }
 
-#obj-arquivo{
-	top: 33px;
-	left:97px;
+#obj-telefone{
+	top: 55px;
+	left:105px;
 	width:15px;
-	height:31px;
-}
-
-#obj-arquivo{
-	top: 33px;
-	left:97px;
-	width:15px;
-	height:31px;
-}
-
-#obj-televisao{
-	top: 32px;
-	left:114px;
-	width:29px;
-	height:32px;
+	height:14px;
 }
 
 #obj-cama{
-	top: 140px;
-	left:53px;
-	width:26px;
-	height:27px;
+	top: 145px;
+	left:66px;
+	width:32px;
+	height:40px;
 }
 
 #obj-janela{
-	top: 20px;
-	left:81px;
-	width:30px;
-	height:20px;
+	top: 35px;
+	left:133px;
+	width:59px;
+	height:21px;
 }
 
 [id^="obj-"]{

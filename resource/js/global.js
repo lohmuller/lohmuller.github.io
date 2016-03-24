@@ -25,8 +25,12 @@ $(window).on('load', function() {
 		setPage(this, "inicial");
 	});
 	
+	
+var myVar = false;
 function movePersonagem(personagem, x, y, speed){
-
+	
+	console.log(typeof myVar );
+	if(typeof myVar != "boolean") return;
 	$(personagem).css("transition-property","top, left");
 	$(personagem).css("transition-duration","0.7s");
 	var dist = 32;
@@ -37,7 +41,8 @@ function movePersonagem(personagem, x, y, speed){
 	var posTop = parseInt($(personagem).css("top"));
 	var posLeft = parseInt($(personagem).css("left"));
 	
-	var myVar = setInterval(function(){ 
+	$(personagem).attr("data-position" , "andando");
+		myVar = setInterval(function(){ 
 		var personagem = $("#ian");
 		if(personagem.length <= 0 ) {alert("não existe!"); return;}
 		var frame = parseInt($(personagem).attr("data-frame"));
@@ -61,6 +66,7 @@ function movePersonagem(personagem, x, y, speed){
 			$(personagem).attr("data-direction" , "cima");
 		} else {
 			clearInterval(myVar);
+			myVar = false;
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
 			ianText("Kaehryannn",0);
@@ -76,8 +82,27 @@ function movePersonagem(personagem, x, y, speed){
 
 	$("#ian").css("top","64px");
 	$("#ian").css("left","64px");
-	movePersonagem("#ian",6,6,1);
+	movePersonagem("#ian",3,3,1);
 	
+	
+	$("[id^='obj-'").on("click", function(){
+		
+		var obj = $(this).attr("id").substr(4);
+		ianText(obj,0);
+		
+		objList = {
+			"cama" : [3,4],
+			"telefone" : [3,2],
+			"janela" : [4,2],
+			"computador" : [2,2],
+			"estante" : [1,2]
+		
+		}
+		
+		movePersonagem("#ian", objList[obj][0], objList[obj][1], 1)
+		//ianText("Clickou no "+objList[obj][0],0);
+		
+	});
 	
 });
 
