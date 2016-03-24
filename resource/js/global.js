@@ -69,7 +69,7 @@ function movePersonagem(personagem, x, y, speed){
 			myVar = false;
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
-			ianText("Kaehryannn",0);
+			ianText("Cheguei!",0);
 			return; 
 		}
 
