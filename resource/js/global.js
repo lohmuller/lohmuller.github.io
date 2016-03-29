@@ -4,7 +4,7 @@ $(window).on('load', function() {
 	 $("body").removeClass("loader");
 	 
 	 var target = window.location.hash;
-	 if(target[0] == "#"){
+	 if(target[0] == "#" || target[0] == ""){
 		 target = target.replace("#", "");
 		 $("body").addClass("show-page-"+target);
 	 } else {
@@ -106,10 +106,6 @@ function movePersonagem(personagem, x, y, speed){
 	
 });
 
-function setPage(obj, target){	
-	sairJogo(obj, target);
-}
-
 
 /**
 Insere texto no balão de mensagem do personagem
@@ -120,10 +116,26 @@ function ianText(text,time){
 }
 
 
-function sairJogo(obj, target) {
+function setPage(obj, target) {
 	var config = {}
+	
+	var origem = $("body").attr("class");
+	origem = origem.substr(5);
+	alert(origem);
+	
+	if(origem != 'inicial'){
+		$("body").removeClass("show-page-inicial");
+		$("body").removeClass("show-page-sobre");
+		$("body").removeClass("show-page-projetos");
+		$("body").removeClass("show-page-contato");
+		$(".active").removeClass("active");
+		$(obj).parents("li").addClass("active");
+		$("body").addClass("show-page-"+target);
+		return;
+	}
+	
 	if(target == 'inicial'){
-				$("body").removeClass("show-page-inicial");
+			$("body").removeClass("show-page-inicial");
 			$("body").removeClass("show-page-sobre");
 			$("body").removeClass("show-page-projetos");
 			$("body").removeClass("show-page-contato");
