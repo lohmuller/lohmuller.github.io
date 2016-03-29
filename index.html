@@ -142,6 +142,8 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
     -F subject='Hello ian' \
     -F text='Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!' 
 	<script>
+	$("#testeEnvio").on("Click", function(){
+		alert("enviando");
 		$.ajax({
 			 url: "https://api.mailgun.net/v3/sandbox44939200dcda457ba58c97a2744af176.mailgun.org/messages",
 			 beforeSend: function(xhr) { 
@@ -164,6 +166,7 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
 			   alert("Cannot get data");
 			 }
 			});
+		});
 	</script>
 
 
