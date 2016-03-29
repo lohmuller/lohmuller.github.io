@@ -146,6 +146,7 @@ background-color:rgba(10, 236, 53, 0.36);;
 	left:37px;
 	position: relative;
 	min-width: 10px;
+	width: fit-content;
 	width: -moz-fit-content;
 	font-size: 8px;
 	font-family: bubbleFont;
