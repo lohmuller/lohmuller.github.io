@@ -133,6 +133,41 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
 
 <!-- Contato -->
 <div id="pagina-contato">
+	
+	<div class="btn btn-default" id="testeEnvio">teste</div>
+	curl -s --user 'api:key-09b5bc3b54c0efb334bbe9421d18a45e' \
+    https://api.mailgun.net/v3/sandbox44939200dcda457ba58c97a2744af176.mailgun.org/messages \
+    -F from='Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>' \
+    -F to='ian <ian@outlook.com.br>' \
+    -F subject='Hello ian' \
+    -F text='Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!' 
+	<script>
+		$.ajax({
+			 url: "https://api.mailgun.net/v3/sandbox44939200dcda457ba58c97a2744af176.mailgun.org/messages",
+			 beforeSend: function(xhr) { 
+			  xhr.setRequestHeader("Authorization", "Basic " + btoa("api:key-09b5bc3b54c0efb334bbe9421d18a45e")); 
+			 },
+			 type: 'POST',
+			 dataType: 'json',
+			 contentType: 'application/json',
+			 processData: false,
+			 data: '{
+				+'"F": {'
+					+'"Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>",'
+					+'"to":"ian <ian@outlook.com.br>",' 
+					+'"subject":"Hello ian",' 
+					+'"text":"Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!"' 
+				+'}',
+			 +'}',
+			 success: function (data) {
+			  alert(JSON.stringify(data));
+			},
+			  error: function(){
+			   alert("Cannot get data");
+			 }
+			});
+	</script>
+
 
 </div>
 
