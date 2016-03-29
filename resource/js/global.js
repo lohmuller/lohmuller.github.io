@@ -120,7 +120,7 @@ function setPage(obj, target) {
 	var config = {}
 	
 	var origem = $("body").attr("class");
-	origem = origem.substr(5);
+	origem = origem.substr(10);
 	alert(origem);
 	
 	if(origem != 'inicial'){
