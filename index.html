@@ -134,40 +134,27 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
 <!-- Contato -->
 <div id="pagina-contato">
 	
-	<div class="btn btn-default" id="testeEnvio">teste</div>
-	curl -s --user 'api:key-09b5bc3b54c0efb334bbe9421d18a45e' \
-    https://api.mailgun.net/v3/sandbox44939200dcda457ba58c97a2744af176.mailgun.org/messages \
-    -F from='Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>' \
-    -F to='ian <ian@outlook.com.br>' \
-    -F subject='Hello ian' \
-    -F text='Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!' 
-	<script>
-	$("#testeEnvio").on("Click", function(){
-		alert("enviando");
-		$.ajax({
-			 url: "https://api.mailgun.net/v3/sandbox44939200dcda457ba58c97a2744af176.mailgun.org/messages",
-			 beforeSend: function(xhr) { 
-			  xhr.setRequestHeader("Authorization", "Basic " + btoa("api:key-09b5bc3b54c0efb334bbe9421d18a45e")); 
-			 },
-			 type: 'POST',
-			 dataType: 'json',
-			 contentType: 'application/json',
-			 processData: false,
-			 data: '{
-				+'"Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>",'
-				+'"to":"ian <ian@outlook.com.br>",' 
-				+'"subject":"Hello ian",' 
-				+'"text":"Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!"' 
-			 +'}',
-			 success: function (data) {
-			  alert(JSON.stringify(data));
-			},
-			  error: function(){
-			   alert("Cannot get data");
-			 }
-			});
-		});
-	</script>
+	<div id="wufoo-mvgi2m20gr337r">
+Fill out my <a href="https://lohmuller.wufoo.com/forms/mvgi2m20gr337r">online form</a>.
+</div>
+<div id="wuf-adv" style="font-family:inherit;font-size: small;color:#a7a7a7;text-align:center;display:block;">Use <a href="http://www.wufoo.com/partners/">Wufoo integrations</a> and get your data to your favorite apps.</div>
+<script type="text/javascript">var mvgi2m20gr337r;(function(d, t) {
+var s = d.createElement(t), options = {
+'userName':'lohmuller',
+'formHash':'mvgi2m20gr337r',
+'autoResize':true,
+'height':'560',
+'async':true,
+'host':'wufoo.com',
+'header':'show',
+'ssl':true};
+s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+s.onload = s.onreadystatechange = function() {
+var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+try { mvgi2m20gr337r = new WufooForm();mvgi2m20gr337r.initialize(options);mvgi2m20gr337r.display(); } catch (e) {}};
+var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+})(document, 'script');</script>
+
 
 
 </div>
