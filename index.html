@@ -152,12 +152,10 @@ Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedi
 			 contentType: 'application/json',
 			 processData: false,
 			 data: '{
-				+'"F": {'
-					+'"Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>",'
-					+'"to":"ian <ian@outlook.com.br>",' 
-					+'"subject":"Hello ian",' 
-					+'"text":"Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!"' 
-				+'}',
+				+'"Mailgun Sandbox <postmaster@sandbox44939200dcda457ba58c97a2744af176.mailgun.org>",'
+				+'"to":"ian <ian@outlook.com.br>",' 
+				+'"subject":"Hello ian",' 
+				+'"text":"Congratulations ian, you just sent an email with Mailgun!  You are truly awesome!"' 
 			 +'}',
 			 success: function (data) {
 			  alert(JSON.stringify(data));
