@@ -8,7 +8,7 @@ $(window).on('load', function() {
 		 target = target.replace("#", "");
 		 $("body").addClass("show-page-"+target);
 	 } else {
-		$("body").addClass("show-page-inicial");
+		$("body").addClass("show-page-inicial"); 
 	 }
 	ianText("Olá",0);
 	
@@ -29,7 +29,6 @@ $(window).on('load', function() {
 var myVar = false;
 function movePersonagem(personagem, x, y, speed){
 	
-	console.log(typeof myVar );
 	if(typeof myVar != "boolean") return;
 	$(personagem).css("transition-property","top, left");
 	$(personagem).css("transition-duration","0.7s");
@@ -44,7 +43,7 @@ function movePersonagem(personagem, x, y, speed){
 	$(personagem).attr("data-position" , "andando");
 		myVar = setInterval(function(){ 
 		var personagem = $("#ian");
-		if(personagem.length <= 0 ) {alert("não existe!"); return;}
+		if(personagem.length <= 0 ) {console.error("não existe!"); return;}
 		var frame = parseInt($(personagem).attr("data-frame"));
 		$(personagem).attr("data-frame", (frame+1));
 		if($(personagem).attr("data-frame") > 1){
@@ -60,8 +59,8 @@ function movePersonagem(personagem, x, y, speed){
 		}
 		else if(targetY > posTop) {
 			posTop +=  dist;
-			$(personagem).attr("data-direction" , "baixo");
 		} else if(targetY < posTop) {
+			$(personagem).attr("data-direction" , "baixo");
 			posTop -= dist;
 			$(personagem).attr("data-direction" , "cima");
 		} else {
@@ -69,7 +68,7 @@ function movePersonagem(personagem, x, y, speed){
 			myVar = false;
 			$(personagem).attr("data-position" , "parado");
 			$(personagem).attr("data-frame" , "0");
-			ianText("Cheguei!",0);
+			ianText("Bem vindo ao meu Portfolio!",0);
 			return; 
 		}
 
@@ -88,7 +87,8 @@ function movePersonagem(personagem, x, y, speed){
 	$("[id^='obj-'").on("click", function(){
 		
 		var obj = $(this).attr("id").substr(4);
-		ianText(obj,0);
+		
+		
 		
 		objList = {
 			"cama" : [3,4],
@@ -96,8 +96,15 @@ function movePersonagem(personagem, x, y, speed){
 			"janela" : [4,2],
 			"computador" : [2,2],
 			"estante" : [1,2]
-		
 		}
+		
+		var txtTmp = {
+			cama : "Hmmm!",
+			telefone : "Opa! Vamos entrar em contato",
+			computador : "Meus projetos!",
+		}
+		
+		ianText(txtTmp[obj],0);
 		
 		movePersonagem("#ian", objList[obj][0], objList[obj][1], 1)
 		//ianText("Clickou no "+objList[obj][0],0);
@@ -121,7 +128,7 @@ function setPage(obj, target) {
 	
 	var origem = $("body").attr("class");
 	origem = origem.substr(10);
-	alert(origem);
+	console.log(origem);
 	
 	if(origem != 'inicial'){
 		$("body").removeClass("show-page-inicial");
@@ -176,9 +183,10 @@ $.getJSON("/projetos/projetos.json", function(data){
 			tempCampo = tempCampo.replace("{"+key2+"}", value2); 
 		});
 		$("#pagina-projetos").append(tempCampo);
-	});
-	
-
+	}); 
 	
 });
+
+
+console.log("%cHey! Obrigado pelo interesse de estar aqui :D!", "color: blue; font-size:15px;");
 	

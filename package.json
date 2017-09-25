@@ -1,0 +1,36 @@
+{
+  "name": "ian-portfolio",
+  "version": "1.0.0",
+  "description": "my portfolio :D",
+  "main": "index.html",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.3.0"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "gulp-webserver": "^0.9.1",
+    "moment": "^2.18.1",
+    "uglify-js": "^3.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lohmuller/lohmuller.github.io.git"
+  },
+  "author": "Ian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lohmuller/lohmuller.github.io/issues"
+  },
+  "homepage": "https://github.com/lohmuller/lohmuller.github.io#readme"
+}
