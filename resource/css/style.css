@@ -33,6 +33,22 @@ body.loader,body.show-page-inicial{
 	background-color: #000 !important;
 }
 
+.en-flag {
+	background-image: url("../img/us-en Flag.png");
+	width: 32px;
+	height: 22px;
+	
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.pt-flag {
+	background-image: url("../img/pt-br flag.png");
+	width: 32px;
+	height: 22px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
 
 .heart-icon{
 	background-image: url("../img/life.png");
