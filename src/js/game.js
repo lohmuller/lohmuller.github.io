@@ -123,6 +123,10 @@ function virarPersonagem (personagem, direction){
 
 movePersonagem('ian', 4, 4, function(event, personagem){
 
+
+    if (event == '') {
+
+    }
     if(event == 'finish') {
         ianText("Bem vindo ao meu Portfolio!",0);
     }
@@ -148,13 +152,37 @@ $("[id^='obj-']").on("click", function(){
     var txtTmp = {
         cama : "Hmmm!",
         telefone : "Opa! Vamos entrar em contato",
-        computador : "Meus projetos!",
+        computador : "Sobre mim!",
+        estante : "Meus projetos!",
+    }
+
+    var callback = {
+        "cama" : function(event, personagem) {
+            if(event == 'finish') {
+                ianText("ZZZzzz",0);
+            }
+        },
+        "telefone" : function(event, personagem) {
+            if(event == 'finish') {
+                $("[href='#contato']").trigger("click");
+            }
+        },
+        "janela" : function() {},
+        "computador" : function(event, personagem) {
+            if(event == 'finish') {
+                $("[href='#sobre']").trigger("click");
+            }
+        },
+        "estante" : function(event, personagem) {
+            if(event == 'finish') {
+                $("[href='#projetos']").trigger("click");
+            }
+        },
     }
 
     ianText(txtTmp[obj],0);
 
-    movePersonagem("ian", objList[obj][0], objList[obj][1], 1);
-    //ianText("Clickou no "+objList[obj][0],0);
+    movePersonagem("ian", objList[obj][0], objList[obj][1], callback[obj]);
 
 });
 

@@ -36,10 +36,7 @@ https://github.com/lohmuller/lohmuller.github.io
  <link rel="stylesheet" href="/components/animate.css-master/animate.min.css">
 
  <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
- <script src="/components/jquery/jquery-1.12.2.min.js"></script> 
- <script src="/components/bootstrap/js/bootstrap.min.js"></script>
- <script src="/components/Lettering.js-master/jquery.lettering.js"></script> 
- <script src="/components/textillate-master/jquery.textillate.js"></script> 
+ <script src="/components/jquery/jquery-1.12.2.min.js"></script>
 </head>
 <body class="loader">
 
@@ -74,7 +71,7 @@ Carregando...
 			<li><a href="#sobre">Sobre</a></li>
 			<li><a href="#projetos">Projetos</a></li>
 			<li><a href="#contato">Contato</a></li>
-			<li><a href="#en-lang" title="English"><div class="en-flag"></div></a></li>
+			<li data-toggle="tooltip" data-placement="left" title="Coming soon"><a class="btn disabled" href="#en-lang"><div class="en-flag"></div></a></li>
 			<li><a href="#pt-lang" title="Português"><div class="pt-flag"></div></a></li>
 		  </ul>
 		</div>
@@ -101,10 +98,18 @@ Carregando...
 </div>
 
 <!-- Contato -->
-<div id="pagina-contato">
+<div id="pagina-contato" class="container">
 	@@include('./partial/contato.html')
 </div>
 
+<script src="/components/bootstrap/js/bootstrap.min.js"></script>
+<script src="/components/Lettering.js-master/jquery.lettering.js"></script>
+<script src="/components/textillate-master/jquery.textillate.js"></script>
 <script src="/resource/js/global.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 </html>

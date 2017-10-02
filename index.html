@@ -36,10 +36,7 @@ https://github.com/lohmuller/lohmuller.github.io
  <link rel="stylesheet" href="/components/animate.css-master/animate.min.css">
 
  <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
- <script src="/components/jquery/jquery-1.12.2.min.js"></script> 
- <script src="/components/bootstrap/js/bootstrap.min.js"></script>
- <script src="/components/Lettering.js-master/jquery.lettering.js"></script> 
- <script src="/components/textillate-master/jquery.textillate.js"></script> 
+ <script src="/components/jquery/jquery-1.12.2.min.js"></script>
 </head>
 <body class="loader">
 
@@ -74,7 +71,7 @@ Carregando...
 			<li><a href="#sobre">Sobre</a></li>
 			<li><a href="#projetos">Projetos</a></li>
 			<li><a href="#contato">Contato</a></li>
-			<li><a href="#en-lang" title="English"><div class="en-flag"></div></a></li>
+			<li data-toggle="tooltip" data-placement="left" title="Coming soon"><a class="btn disabled" href="#en-lang"><div class="en-flag"></div></a></li>
 			<li><a href="#pt-lang" title="Português"><div class="pt-flag"></div></a></li>
 		  </ul>
 		</div>
@@ -113,51 +110,61 @@ Carregando...
 
 <!-- Sobre -->
 <div id="pagina-sobre" class="container">
-	
-<div class="panel panel-default">
-    <div class="panel-body">
-        Oi, eu sou Ian!
-        Comecei a programar aos 11 anos com Action Script do Adobe Flash, depois aos 15 anos fui para C++ e Lua, e comecei a curtir bastante desenvolvimento para web, aprendi PHP.
-        Caso queira saber mais sobre mim <a href="linkedin.com/in/lohmuller">Meu Linkedin</a>, lá mantenho atualizado minhas competências.
-    </div>
-</div>
+	<iframe src="/terminal.html" style="height:100vh" width="100%"></iframe>
 </div>
 
 <!-- Projetos -->
 <div id="pagina-projetos" class="container">
-	<iframe src="/Bootstrap.html" width="100%" height="640px">
-
-
-</iframe>
-
-
-<div style="display:none;">
-    <div class="panel panel-default projeto-thumb">
-        <div class="panel-heading">{titulo}</div>
-        <div class="panel-body">
-            Em breve ._./
-            <!-- <div><h4>titulo</h4></div><hr/> -->
-
-            <div style="display:inline-flex;">
-                <div class="thumbnail" style="width:80px;height:80px">
-                    <img src="/resource/projetos/{img}" alt="Miniatura">
-                </div>
-                <div style="padding:10px">
-                    {description}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	Ainda não migrei para esse novo portfolio... caso queira ver alguns projetos antigos
+<a href="http://www.lohmuller.com.br" target="_blank">Clique aqui</a> (tem uns 4 anos + eles)
 
 </div>
 
 <!-- Contato -->
-<div id="pagina-contato">
-	Em breve ._./
+<div id="pagina-contato" class="container">
+	<h4>Alguns lugares que você pode me encontrar!</h4>
+<p>
+    <a href="https://www.linkedin.com/in/lohmuller" >Linkedin</a> <br>
+    <a href="https://github.com/lohmuller">GitHub</a> <br>
+    <a href="https://www.hackerrank.com/ian_cheberle">HackerRank</a>
+    <br>
+    <kjasgfvd></kjasgfvd>
+</p>
 
+<script>
+    function asfgfasdf(asd) {
+        var tasd = $("kjasgfvd").text();
+        $("kjasgfvd").text(tasd + asd);
+    }
+
+    setTimeout(function() {asfgfasdf('@')}, 1400);
+    setTimeout(function() {asfgfasdf('b')}, 3300);
+    setTimeout(function() {asfgfasdf('o')}, 3000);
+    setTimeout(function() {asfgfasdf('i')}, 100);
+    setTimeout(function() {asfgfasdf('.')}, 2100);
+    setTimeout(function() {asfgfasdf('.')}, 3200);
+    setTimeout(function() {asfgfasdf('n')}, 300);
+    setTimeout(function() {asfgfasdf('oo')}, 1900);
+    setTimeout(function() {asfgfasdf('r')}, 3400);
+    setTimeout(function() {asfgfasdf('o')}, 1500);
+    setTimeout(function() {asfgfasdf('u')}, 1600);
+    setTimeout(function() {asfgfasdf('t')}, 1700);
+    setTimeout(function() {asfgfasdf('l')}, 1800);
+    setTimeout(function() {asfgfasdf('a')}, 200);
+    setTimeout(function() {asfgfasdf('k')}, 2000);
+    setTimeout(function() {asfgfasdf('m')}, 3100);
+    setTimeout(function() {asfgfasdf('c')}, 2200);
+</script>
 </div>
 
+<script src="/components/bootstrap/js/bootstrap.min.js"></script>
+<script src="/components/Lettering.js-master/jquery.lettering.js"></script>
+<script src="/components/textillate-master/jquery.textillate.js"></script>
 <script src="/resource/js/global.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 </html>

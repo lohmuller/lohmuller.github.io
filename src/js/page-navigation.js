@@ -33,7 +33,8 @@ function setPage(obj, target) {
 	var origem = $("body").attr("class");
 	origem = origem.substr(10);
 	console.log(origem);
-	
+    console.log(target);
+
 	if(origem != 'inicial'){
 		$("body").removeClass("show-page-inicial");
 		$("body").removeClass("show-page-sobre");
@@ -42,7 +43,12 @@ function setPage(obj, target) {
 		$(".active").removeClass("active");
 		$(obj).parents("li").addClass("active");
 		$("body").addClass("show-page-"+target);
-		return;
+        /*console.log(target == 'inicial');
+        console.log( origem !== 'inicial');
+        if(target == 'inicial' && origem !== 'inicial') {
+            console.log("eae");
+            setPage(obj, 'inicial');
+        }*/
 	}
 	
 	if(target == 'inicial'){
@@ -73,6 +79,7 @@ function setPage(obj, target) {
 			$(obj).parents("li").addClass("active");
 			$("body").addClass("show-page-"+target);
     });
+
 }
 
 
