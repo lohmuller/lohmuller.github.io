@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://kristopolous.github.io/BOOTSTRA.386/examples/marketing-narrow.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Template · Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./terminal_files/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+    <link href="./terminal_files/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://kristopolous.github.io/BOOTSTRA.386/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://kristopolous.github.io/BOOTSTRA.386/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://kristopolous.github.io/BOOTSTRA.386/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="https://kristopolous.github.io/BOOTSTRA.386/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="https://kristopolous.github.io/BOOTSTRA.386/assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a >Home</a></li>
+          <li><a data-target="#" href="/">Voltar</a></li>
+        </ul>
+        <h3 class="muted">Meu Portfolio</h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>Sobre mim!</h1>
+        <p class="lead">Oi, eu sou Ian! Desenvolvo desde os 11 anos de idade passando por Linguagem Script e Compilada focando em desenvolvimento de sistema para web e que envolva redes.</p>
+        <a class="btn btn-large btn-success" data-target="#contato" href="/#contato">CONTRATE A G O R A</a>
+      </div>
+
+      <hr>
+      <h2>Habilidades</h2>
+      <div class="row-fluid marketing">
+
+        <div class="span6">
+          <h4>Front-end</h4>
+          <p>
+          <ul>
+            <li>HTML4/5</li>
+            <li>CSS2/3</li>
+            <li>JQuery</li>
+            <li>Gulp</li>
+            <li>React</li>
+            <li>Twitter Bootstrap</li>
+            <li>Photoshop</li>
+            <li>Flash AS2/3  :')</li>
+          </ul>
+          </p>
+        </div>
+
+        <div class="span6">
+          <h4>Back-end</h4>
+          <p>
+            <ul>
+              <li>Nodejs</li>
+              <li>PHP (com POO e PSR, sem pogs!)</li>
+              <li>ZendFramework 1/2</li>
+              <li>Sql (Mysql/mariaDb, SqlServer)</li>
+              <li>NoSql (MongoDb)</li>
+              <li>NGINX</li>
+              <li>Docker</li>
+              <li>AWS (Lambda, S3, ec2, ApiGateway,...)</li>
+              <li>BlueMix e Watson</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>© Company 2017</p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./terminal_files/jquery.js.download"></script>
+    <script src="./terminal_files/bootstrap-transition.js.download"></script>
+    <script src="./terminal_files/bootstrap-alert.js.download"></script>
+    <script src="./terminal_files/bootstrap-modal.js.download"></script>
+    <script src="./terminal_files/bootstrap-dropdown.js.download"></script>
+    <script src="./terminal_files/bootstrap-scrollspy.js.download"></script>
+    <script src="./terminal_files/bootstrap-tab.js.download"></script>
+    <script src="./terminal_files/bootstrap-tooltip.js.download"></script>
+    <script src="./terminal_files/bootstrap-popover.js.download"></script>
+    <script src="./terminal_files/bootstrap-button.js.download"></script>
+    <script src="./terminal_files/bootstrap-collapse.js.download"></script>
+    <script src="./terminal_files/bootstrap-carousel.js.download"></script>
+    <script src="./terminal_files/bootstrap-typeahead.js.download"></script>
+
+  
+<script>
+    $("[data-target]").on("click", function() {
+        var target = $(this).attr('data-target');
+        window.parent.$("[href='"+target+"']").trigger("click");
+        console.log( window.parent.$("[href='"+target+"']").html());
+        return false;
+    })
+
+</script>
+</body></html>
