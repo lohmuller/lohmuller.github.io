@@ -16,6 +16,7 @@ gulp.task('webserver', function() {
         .pipe(webserver({
             fallback: 'index.html',
             livereload: true,
+			host: '0.0.0.0',
             open: true
         }));
 });
