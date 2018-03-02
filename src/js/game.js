@@ -12,14 +12,13 @@ function ballonText(idCharacter, text,time){
 }
 
 var mapArray = [
-    [1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1],
-    [1,0,2,0,0,0,1,1],
-    [1,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1],
+    [1,0,2,0,0,0,1],
+    [1,0,0,0,0,0,1],
+    [1,0,0,0,0,0,1],
+    [1,0,0,0,0,0,1],
+    [1,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1]
 ];
 
 var tilesize = 32;
@@ -121,7 +120,7 @@ function virarPersonagem (personagem, direction){
 }
 
 
-movePersonagem('ian', 4, 4, function(event, personagem){
+movePersonagem('ian', 3, 3, function(event, personagem){
 
 
     if (event == '') {
@@ -142,11 +141,11 @@ $("[id^='obj-']").on("click", function(){
 
 
     objList = {
-        "cama" : [3,4],
-        "telefone" : [3,2],
-        "janela" : [4,2],
-        "computador" : [2,2],
-        "estante" : [1,2]
+        "cama" : [2,3],
+        "telefone" : [2,1],
+        "janela" : [3,1],
+        "computador" : [1,1],
+        "estante" : [0,1]
     }
 
     var txtTmp = {

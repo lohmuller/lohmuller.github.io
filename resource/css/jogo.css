@@ -66,14 +66,13 @@
     -webkit-transform: scale(2,2); /* Safari */
     transform: scale(2,2);
 	top: 150px;
-
 	position:relative;
 	margin: 0 auto;
 	background-image: url("../img/cenario.png");
-	width:256px;
-	height:256px;
+	width:198px;
+	height:198px;
 	background-repeat: no-repeat;
-	padding:16px;
+	padding:3px;
 }
 
 
@@ -90,36 +89,36 @@ border-radius: 5px;
 }
 
 #obj-estante{
-	top: 48px;
-	left:32px;
+	top: 16px;
+	left:0px;
 	width:32px;
 	height:28px;
 }
 
 #obj-computador{
-	top: 49px;
-	left:72px;
+	top: 20px;
+	left:43px;
 	width:16px;
 	height:19px;
 }
 
 #obj-telefone{
-	top: 55px;
-	left:105px;
+	top: 25px;
+	left:77px;
 	width:15px;
 	height:14px;
 }
 
 #obj-cama{
-	top: 145px;
-	left:66px;
+	top: 115px;
+	left:37px;
 	width:32px;
 	height:40px;
 }
 
 #obj-janela{
-	top: 35px;
-	left:133px;
+	top: 0px;
+	left:100px;
 	width:59px;
 	height:21px;
 }
