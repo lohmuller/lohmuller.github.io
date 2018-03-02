@@ -144,7 +144,7 @@ movePersonagem('ian', 3, 3, function(event, personagem){
 
     }
     if(event == 'finish') {
-        ianText("Bem vindo ao meu Portfolio!",0);
+        ianText("Bem vindo ao meu Portfolio! Os objetos são interativos, você pode clicar neles!",0);
     }
 
 });
@@ -182,7 +182,7 @@ $("[id^='obj-']").on("click", function(){
             if(event == 'finish') {
 				virarPersonagem(personagem, "cima");
 				$("#textbox").css("display","none");
-              //  $("[href='#contato']").trigger("click");
+                $("[href='#contato']").trigger("click");
             }
         },
         "janela" : function(event, personagem) {

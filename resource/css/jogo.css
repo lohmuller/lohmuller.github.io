@@ -67,6 +67,14 @@
 	height:384px;
 }
 
+@media (max-width : 390px) {
+	#cenario{
+		-ms-transform: scale(1.7, 1.7); /* IE 9 */
+		-webkit-transform: scale(1.7, 1.7); /* Safari */
+		transform: scale(1.7, 1.7);
+	}
+}
+
 #cenario{
 	top: 0px;
 	position:relative;
