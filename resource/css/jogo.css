@@ -1,14 +1,14 @@
 [data-direction="baixo"][data-position="parado"][data-frame="0"]{
-	background-position: -32px 0px;
+	background-position: -64px 0px;
 }
 [data-direction="direita"][data-position="parado"][data-frame="0"]{
-	background-position: -32px -64px
+	background-position: -64px -128px
 }
 [data-direction="esquerda"][data-position="parado"][data-frame="0"]{
-	background-position: -32px -32px
+	background-position: -64px -64px
 }
 [data-direction="cima"][data-position="parado"][data-frame="0"]{
-	background-position: -32px -96px;
+	background-position: -64px -192px;
 }
 
 
@@ -17,34 +17,34 @@
 	background-position: 0px 0px;
 }
 [data-direction="baixo"][data-position="andando"][data-frame="1"]{
-	background-position: -64px 0px;
+	background-position: -128px 0px;
 }
 
 [data-direction="esquerda"][data-position="andando"][data-frame="0"]{
-	background-position: 0px -32px
+	background-position: 0px -64px
 }
 [data-direction="esquerda"][data-position="andando"][data-frame="1"]{
-	background-position: -64px -32px
+	background-position: -128px -64px
 }
 
 [data-direction="direita"][data-position="andando"][data-frame="0"]{
-	background-position: 0px -64px
+	background-position: 0px -128px
 }
 [data-direction="direita"][data-position="andando"][data-frame="1"]{
-	background-position: -64px -64px
+	background-position: -128px -128px
 }
 
 [data-direction="cima"][data-position="andando"][data-frame="0"]{
-		background-position: 0px -96px;
+		background-position: 0px -192px;
 }
 [data-direction="cima"][data-position="andando"][data-frame="1"]{
-		background-position: -64px -96px;
+		background-position: -128px -192px;
 }
 
 .personagem {
     position:absolute;
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
 }
 
 .personagem.ian {
@@ -61,20 +61,30 @@
 	height:100%;
 }
 
-#cenario{
-	    -ms-transform: scale(2,2); /* IE 9 */
-    -webkit-transform: scale(2,2); /* Safari */
-    transform: scale(2,2);
-	top: 150px;
-	position:relative;
-	margin: 0 auto;
+#background-quarto {
 	background-image: url("../img/cenario.png");
-	width:198px;
-	height:198px;
-	background-repeat: no-repeat;
-	padding:3px;
+	width:384px;
+	height:384px;
 }
 
+#cenario{
+	top: 0px;
+	position:relative;
+	margin: 0 auto;
+	width:384px;
+	height:384px;
+	background-repeat: no-repeat;
+}
+
+#textbox{
+	background-image : url('/resource/img/text-area.png');
+	bottom:0px;
+	color:#FFF;
+	padding:10px;
+	position:absolute;
+	width:100%;
+	height:80px;
+}
 
 .balao-texto{
 box-shadow: 0 0 6px #B2B2B2;
@@ -89,38 +99,38 @@ border-radius: 5px;
 }
 
 #obj-estante{
-	top: 16px;
+	top: 32px;
 	left:0px;
-	width:32px;
-	height:28px;
+	width:64px;
+	height:56px;
 }
 
 #obj-computador{
-	top: 20px;
-	left:43px;
-	width:16px;
-	height:19px;
+	top: 34px;
+	left:80px;
+	width:32px;
+	height:38px;
 }
 
 #obj-telefone{
-	top: 25px;
-	left:77px;
-	width:15px;
-	height:14px;
+	top: 46px;
+	left:148px;
+	width:30px;
+	height:28px;
 }
 
 #obj-cama{
-	top: 115px;
-	left:37px;
-	width:32px;
-	height:40px;
+	top: 230px;
+	left:70px;
+	width:62px;
+	height:80px;
 }
 
 #obj-janela{
-	top: 0px;
-	left:100px;
-	width:59px;
-	height:21px;
+	top: 8px;
+	left:200px;
+	width:120px;
+	height:42px;
 }
 
 [id^="obj-"]{
@@ -137,6 +147,7 @@ background-color:rgba(10, 236, 53, 0.36);;
 
 .bubble
 {
+	display:none;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
   -khtml-user-select: none;    /* Konqueror */

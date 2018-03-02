@@ -7,8 +7,13 @@ function ianText(text,time){
 }
 
 function ballonText(idCharacter, text,time){
-    $("#"+idCharacter).find(".bubble").text(text);
-    $("#"+idCharacter).find(".bubble").css('display', '');
+	$("#textbox").css("display","none");
+	if(text != null && text.length > 0) {
+		$("#textbox").css("display","");
+		$("#textbox").text(text);
+	}
+//    $("#"+idCharacter).find(".bubble").text(text);
+//    $("#"+idCharacter).find(".bubble").css('display', '');
 }
 
 var mapArray = [
@@ -21,7 +26,7 @@ var mapArray = [
     [1,1,1,1,1,1,1]
 ];
 
-var tilesize = 32;
+var tilesize = 64;
 
 function drawMap() {
     for (var y = 0; y < mapArray.length; y++) {
@@ -70,7 +75,7 @@ function movePersonagem(personagem, x, y, eventCallback){
     $(personagem).attr("data-position" , "andando");
 
     if (eventCallback !== undefined)
-    eventCallback('start', $(personagem));
+    eventCallback('start', personagem);
 
     myVar = setInterval(function(){
         var personagem = $("#ian");
@@ -88,30 +93,42 @@ function movePersonagem(personagem, x, y, eventCallback){
             posLeft -= dist;
             virarPersonagem(personagem, "esquerda");
         }
-        else if(targetY > posTop) {
-            posTop +=  dist;
-            virarPersonagem(personagem, "baixo");
-        } else if(targetY < posTop) {
-            posTop -= dist;
-            virarPersonagem(personagem, "cima");
-        } else {
-            clearInterval(myVar);
-            myVar = false;
-            $(personagem).attr("data-position" , "parado");
-            $(personagem).attr("data-frame" , "0");
+       // else if(targetY + dist > posTop || targetY - dist > posTop) {
+			
+			else if(targetY > posTop) {
+				posTop +=  dist;
+				virarPersonagem(personagem, "baixo");
+			} else if(targetY < posTop) {
+				posTop -= dist;
+				virarPersonagem(personagem, "cima");
+			} else {
+				clearInterval(myVar);
+				myVar = false;
+				$(personagem).attr("data-position" , "parado");
+				$(personagem).attr("data-frame" , "0");
 
-            if (eventCallback !== undefined)
-            eventCallback('finish', $(personagem));
-            return;
-        }
+				if (eventCallback !== undefined)
+				eventCallback('finish', personagem);
+				return;
+			}
+		/*}else {
+				clearInterval(myVar);
+				myVar = false;
+				$(personagem).attr("data-position" , "parado");
+				$(personagem).attr("data-frame" , "0");
+
+				if (eventCallback !== undefined)
+				eventCallback('finish', personagem);
+				return;
+			}*/
 
 
         $(personagem).css("top", posTop+"px");
         $(personagem).css("left", posLeft+"px");
         if (eventCallback !== undefined)
-        eventCallback('walked', $(personagem));
+        eventCallback('walked', personagem);
 
-    }, 400);
+    }, 250);
 }
 
 function virarPersonagem (personagem, direction){
@@ -163,17 +180,27 @@ $("[id^='obj-']").on("click", function(){
         },
         "telefone" : function(event, personagem) {
             if(event == 'finish') {
-                $("[href='#contato']").trigger("click");
+				virarPersonagem(personagem, "cima");
+				$("#textbox").css("display","none");
+              //  $("[href='#contato']").trigger("click");
             }
         },
-        "janela" : function() {},
+        "janela" : function(event, personagem) {
+			if(event == 'finish') {
+				virarPersonagem(personagem, "cima");
+            }
+		},
         "computador" : function(event, personagem) {
             if(event == 'finish') {
+				virarPersonagem(personagem, "cima");
+				$("#textbox").css("display","none");
                 $("[href='#sobre']").trigger("click");
             }
         },
         "estante" : function(event, personagem) {
             if(event == 'finish') {
+				virarPersonagem(personagem, "cima");
+				$("#textbox").css("display","none");
                 $("[href='#projetos']").trigger("click");
             }
         },
