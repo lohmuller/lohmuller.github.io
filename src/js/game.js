@@ -144,7 +144,7 @@ movePersonagem('ian', 3, 3, function(event, personagem){
 
     }
     if(event == 'finish') {
-        ianText("Bem vindo ao meu Portfolio! Os objetos são interativos, você pode clicar neles!",0);
+        ianText("Bem vindo ao meu Portfolio! Os objetos são interativos, você pode explorar o local!",0);
     }
 
 });
