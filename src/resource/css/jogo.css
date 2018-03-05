@@ -88,7 +88,7 @@
 }
 
 #textbox{
-	background-image : url('/resource/img/text-area.png');
+	background-image : url('../img/text-area.png');
 	bottom:0px;
 	color:#FFF;
 	padding:10px;
