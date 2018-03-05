@@ -4,6 +4,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
 import './resource/css/style.css';
+import './index.css';
 
 class Header extends Component {
   
