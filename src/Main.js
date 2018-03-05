@@ -5,18 +5,15 @@ import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
 import './resource/css/style.css';
 
-import Header from './Header.js';
-import Main from './Main.js';
-
-class App extends Component {
+class Main extends Component {
+  
   render() {
     return (
-		<div className="App">
-			<Header />
-			<Main />
+		<div className="container">
+		kkk eae men
 		</div>
     );
   }
 }
 
-export default App;
+export default Main;
