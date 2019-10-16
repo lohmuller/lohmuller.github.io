@@ -1,37 +1,44 @@
 {
-  "name": "ian-portfolio",
+  "name": "port2",
   "version": "1.0.0",
-  "description": "my portfolio :D",
-  "main": "index.html",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-pug": "^3.3.0"
+    "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
+    "history": "^4.10.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "gulp-concat": "^2.6.1",
-    "gulp-file-include": "^1.2.0",
-    "gulp-less": "^3.3.2",
-    "gulp-livereload": "^3.8.1",
-    "gulp-ng-annotate": "^2.0.0",
-    "gulp-notify": "^3.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^4.3.11",
-    "gulp-webserver": "^0.9.1",
-    "moment": "^2.18.1",
-    "uglify-js": "^3.1.2"
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@webpack-cli/init": "^0.2.2",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open",
+    "webpack": "babel-node ./node_modules/webpack/bin/webpack",
+    "build": "babel-node ./node_modules/webpack/bin/webpack --mode production",
+    "build-old": "webpack --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lohmuller/lohmuller.github.io.git"
-  },
-  "author": "Ian",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lohmuller/lohmuller.github.io/issues"
-  },
-  "homepage": "https://github.com/lohmuller/lohmuller.github.io#readme"
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
