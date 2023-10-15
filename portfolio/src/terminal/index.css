@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+body {
+  margin: 0;
+  background-color: #fafafae1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6B728E;
+  border-radius: 10px;
+  border: none;
+}
+
+.terminal-content {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  color: #ffffff;
+  padding: 1rem;
+  margin: 0 0 0 0;
+  width : 100%;
+  height: calc(100% - 4rem);
+  overflow-y : scroll;
+  overflow-x : hidden;
+  background: rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+.scale-in {
+  animation: scaleIn 0.4s ease-in-out forwards;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0) skewX(-13deg);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.5) skewX(13deg);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.1) skewX(10deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: scale(0.95) skewX(-5deg);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1) skewX(0deg);
+    opacity: 1;
+  }
+}
+
+
+.scale-out {
+  animation: scaleOut 0.4s ease-out forwards;
+}
+
+@keyframes scaleOut {
+  0% {
+    transform: scale(1) skewX(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(0.95) skewX(-5deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.1) skewX(10deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: scale(0.9) skewX(0deg) ;
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(0.9) skewX(0deg) ;
+    opacity: 0;
+  }
+}
