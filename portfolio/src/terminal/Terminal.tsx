@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
+import TypingEffect from "./TypingEffect";
 
 import "./index.css";
 
@@ -20,8 +21,7 @@ import { DateCmd } from "./commands/DateCmd";
 import Command, { CommandProps, TerminalInterface } from "./commands/Command";
 import { LsCmd } from "./commands/LsCmd";
 import { ClearCmd } from "./commands/ClearCmd";
-
-
+import { WhoAmICmd } from "./commands/WhoAmICmd";
 
 interface TerminalProps {
     title?: string;
@@ -39,42 +39,53 @@ const Terminal: React.FC<TerminalProps> = ({
     const currentPath = '~';
     const currentHost = title.toLowerCase().replace(' ', '');
 
-    const getUsername = () => {
-        return username ? username : 'guest';
-    }
-
-    const getInitInput = () => {
-        /*return `<div style=\{
+    const getInitInput = (cmmd: string = "") => {
+        const usernameDisplay = username ?? 'guest';
+        const prompt = `>${usernameDisplay}@${currentHost}:${currentPath}$ `;
+        return <span style={{
             color: 'lime',
             fontWeight: 'bold',
             marginRight: '5px',
-        }> aaaa</div >`;*/
+        }}>{prompt}{cmmd}</span>;
+    };
 
-        return '>' + getUsername() + '@' + currentHost + ':' + currentPath + '$ ';
-    }
-
+    const [terminal, setterminal] = React.useState<TerminalInterface>();
     const [position, setPosition] = React.useState({ x: 0, y: 0 });
+    const [showPrompt, setShowPrompt] = React.useState<boolean>(true);
     const [inputValue, setInputValue] = React.useState<string>('');
-    const [outputValue, setOutputValue] = React.useState<string>('');
-    const [message, setMessage] = React.useState('');
+    const [outputValue, setOutputValue] = React.useState<Array<JSX.Element>>([]);
     const [lastLogin, setLastLogin] = React.useState(new Date());
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const reff = React.useRef<HTMLDivElement>(null);
     const [history, setHistory] = React.useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = React.useState<number>(0);
-    const [initialCommand, setInitialCommand] = React.useState<string>(getInitInput());
     const [width, setWidth] = React.useState(600);
     const [height, setHeight] = React.useState(400);
     const draggableRef = React.useRef(null);
     const innerRef = React.useRef(null);
 
-    const println = (text: string, newline = true): void => {
-        if (newline) {
-            text += "\n";
-        }
-        setOutputValue(prevState => prevState + text);
-    }
+    /**
+     * 
+     * @param content 
+     * @param newline 
+     */
+    const println = (content: JSX.Element | string, newline = true): void => {
+        const styles: React.CSSProperties = {
+            margin: '0',
+            display: 'inline',
+            whiteSpace: 'pre-wrap',
+        };
+
+        const formattedContent =
+            typeof content === "string"
+                ? <pre style={styles}><TypingEffect speed={20}>{content}</TypingEffect></pre>
+                : content;
+
+        const formattedOutput = newline ? <>{formattedContent}<br /></> : formattedContent;
+
+        setOutputValue(prevState => [...prevState, formattedOutput]);
+    };
 
     // ? add as many commands as you want
     /*const mapCommands = new Map([
@@ -95,14 +106,13 @@ const Terminal: React.FC<TerminalProps> = ({
 
 
     React.useEffect(() => {
-        setOutputValue(``)
+        setOutputValue([])
         setHistory([]);
         setLastLogin(new Date());
-        setMessage('');
 
         println("Fedora 31 <WorkStation Edition>");
         println("Kernel 5.3.13-300.fx86_64");
-        println("Last Login:" + lastLogin);
+        println(`Last Login: ${lastLogin}`);
         println("");
         println("Welcome to Terminal ! Type \"help\" to see the list of commands.");
 
@@ -160,7 +170,7 @@ const Terminal: React.FC<TerminalProps> = ({
 
     // ? logout from the terminal
     const handleLogout = () => {
-        setMessage(`Logging out... \n`);
+        //    setMessage(`Logging out... \n`);
         setTimeout(() => {
             // some logic like dispatching logout action
             //    setInitialCommand(`Notlunix\\github\\>guest@${title.toLowerCase().replace(' ', '')}:~$ `);
@@ -169,14 +179,14 @@ const Terminal: React.FC<TerminalProps> = ({
 
     //? reboot the terminal
     const reboot = () => {
-        setMessage(`Rebooting... \n Please be patient...`);
+        //    setMessage(`Rebooting... \n Please be patient...`);
         if (rebootTerminal) {
             rebootTerminal();
         }
         setTimeout(() => {
             setInputValue('');
             setLastLogin(new Date());
-            setMessage('');
+            //     setMessage('');
         }, 3000);
     }
 
@@ -190,51 +200,79 @@ const Terminal: React.FC<TerminalProps> = ({
         }
     }
 
+    const cmds: typeof Command[] = [
+        HelpCmd,
+        DateCmd,
+        LsCmd,
+        ClearCmd,
+        WhoAmICmd
+    ]
+
+    let cmdList: { [key: string]: typeof Command } = {};
+
+    React.useEffect(() => {
+        let terminal: TerminalInterface = {
+            showPrompt: showPrompt,
+            setShowPrompt: setShowPrompt,
+            setOutputValue: setOutputValue,
+            currentCmd: null,
+            println: println,
+            cmds: cmds,
+            cmdList: cmdList,
+            parameters: "",
+            fullcmd: "",
+            username: username ?? 'Guest',
+            history: history,
+            currentPath: currentPath,
+            workDir: "",
+        }
+        setterminal(terminal);
+    }, []);
+
+
+    //transform in a Class
+
+
+    cmds.forEach((CommandClass: typeof Command) => {
+        cmdList[CommandClass.cmd] = CommandClass;
+    });
+
     /*
     * ? handle the command entered by the user
      */
-    const handleCommand = (fullcmd: string) => {
+    const handleCommand = (promptInput: string) => {
 
-        fullcmd = fullcmd.trim();
+        promptInput = promptInput.trim();
 
-        println(getInitInput() + fullcmd);
-        if (fullcmd === '') {
+        if (terminal === undefined) {
             return;
         }
 
-        let [command, parameters] = fullcmd.split(' ');
-        const cmds: typeof Command[] = [
-            HelpCmd,
-            DateCmd,
-            LsCmd,
-            ClearCmd
-        ]
+        if (terminal.currentCmd === null) {
+            println(getInitInput(promptInput));
+            let [command, parameters] = promptInput.split(' ');
 
-        let cmdList: { [key: string]: typeof Command } = {};
+            if (promptInput === '') {
+                return;
+            }
 
-        //transform in a Class
-        const terminal: TerminalInterface = {
-            setOutputValue: setOutputValue,
-            cmds: cmds,
-            cmdList: cmdList,
-            parameters: parameters,
-            fullcmd: fullcmd,
-            username: username ?? 'Guest',
-            history: history,
-            currentPath: "",
-            workDir: "",
-        }
+            if (!(command in cmdList)) {
+                println(`Command not found: ${command}`);
+                return;
+            }
+            terminal.fullcmd = promptInput;
+            terminal.parameters = parameters;
 
-        cmds.forEach((CommandClass: typeof Command) => {
-            cmdList[CommandClass.cmd] = CommandClass;
-        });
-
-        if (command in cmdList) {
-            const commandClass = cmdList[command] as typeof HelpCmd;
-            (new commandClass(terminal)).action();
+            const commandClass = cmdList[command] as unknown as HelpCmd as Command as any;
+            terminal.currentCmd = new commandClass(terminal);
+            terminal.setShowPrompt(false);
+            if (terminal.currentCmd !== null) {
+                terminal.currentCmd.run();
+            }
         } else {
-            println(`Command not found: ${command}`);
+            terminal.currentCmd.newInput(promptInput);
         }
+
 
 
         return;
@@ -284,15 +322,6 @@ const Terminal: React.FC<TerminalProps> = ({
             setOutputValue(prevState => prevState + output);
             return;
         }
-        if (command.toLowerCase().trim() === ('ls permissions')) {
-            output += `${listeUserPermissions()}\n`;
-            setOutputValue(prevState => prevState + output);
-            return;
-        }
-        if (command.toLowerCase().trim() === ('logout')) {
-            handleLogout();
-            return;
-        }
     }
 
     /*
@@ -305,40 +334,33 @@ const Terminal: React.FC<TerminalProps> = ({
     };
 
     const handleEnterKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            setHistory((prevHistory) => [...prevHistory, inputValue]);
-            setHistoryIndex(history.length);
-            handleCommand(inputValue);
-            setInputValue('');
-        } else if (event.key === 'Tab') {
-            event.preventDefault();
-            mapCommands.forEach((_, key) => {
-                if (key.startsWith(inputValue)) {
-                    setInputValue(key);
+        switch (event.key) {
+            case 'Enter':
+                setHistory(prevHistory => [...prevHistory, inputValue]);
+                setHistoryIndex(history.length);
+                handleCommand(inputValue);
+                setInputValue('');
+                break;
+            case 'Tab':
+                event.preventDefault();
+                const matchingCmd = cmds.find(cmdClass => cmdClass.cmd.startsWith(inputValue));
+                if (matchingCmd) {
+                    setInputValue(matchingCmd.cmd);
                 }
-            })
-        } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            if (history.length > 0) {
-                setHistoryIndex((prevHistoryIndex) => {
-                    if (prevHistoryIndex === 0) {
-                        return prevHistoryIndex;
-                    }
-                    return prevHistoryIndex - 1;
-                })
-                setInputValue(history[historyIndex]);
-            }
-        } else if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            if (history.length > 0) {
-                setHistoryIndex((prevHistoryIndex) => {
-                    if (prevHistoryIndex === history.length - 1) {
-                        return prevHistoryIndex;
-                    }
-                    return prevHistoryIndex + 1;
-                })
-                setInputValue(history[historyIndex]);
-            }
+                break;
+            case 'ArrowUp':
+            case 'ArrowDown':
+                event.preventDefault();
+                if (history.length == 0) break;
+                const newIndex =
+                    event.key === 'ArrowUp'
+                        ? Math.max(historyIndex - 1, 0)
+                        : Math.min(historyIndex + 1, history.length - 1);
+                setHistoryIndex(newIndex);
+                setInputValue(history[newIndex]);
+                break;
+            default:
+                break;
         }
     };
 
@@ -487,10 +509,13 @@ const Terminal: React.FC<TerminalProps> = ({
                 </AppBar>
             </Box>
             <Box className="terminal-content" ref={reff}>
-                <div style={{ marginBottom: "-15px" }}>
-                    <React.Fragment key="console">
-                        <pre style={{ textWrap: "wrap" }}>{outputValue}</pre>
-                    </React.Fragment>
+                <div style={{
+                    margin: '0px',
+                    whiteSpace: 'normal'
+                }}>
+                    {outputValue.map((item, index) => (
+                        <React.Fragment key={index}>{item}</React.Fragment>
+                    ))}
                 </div>
                 <div style={{
                     display: 'flex',
@@ -498,15 +523,12 @@ const Terminal: React.FC<TerminalProps> = ({
                     alignItems: 'center',
                     justifyContent: 'flex-start',
                 }}>
-                    <div style={{
-                        color: 'lime',
-                        fontWeight: 'bold',
-                        marginRight: '5px',
-                    }}>{initialCommand}</div>
+                    {showPrompt && getInitInput()}
                     <div>
                         <input
                             type="text"
                             value={inputValue}
+                            name="terminal-input"
                             style={{
                                 border: 'none',
                                 outline: 'none',

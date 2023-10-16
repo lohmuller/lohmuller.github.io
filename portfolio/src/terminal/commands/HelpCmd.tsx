@@ -1,4 +1,4 @@
-import Command, { CommandProps, SetOutputValueFunction, TerminalInterface } from "./Command"
+import Command from "./Command"
 
 
 export class HelpCmd extends Command {
@@ -6,7 +6,7 @@ export class HelpCmd extends Command {
     static cmd: string = "help";
     static description: string = "Description for help command";
 
-    public action() {
+    public async action(): Promise<void> {
         let mapCommands = new Map<string, string>();
         for (let index in this.terminal.cmds) {
             const cmdClass = this.terminal.cmds[index];

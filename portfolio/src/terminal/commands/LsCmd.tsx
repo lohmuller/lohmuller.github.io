@@ -6,7 +6,15 @@ export class LsCmd extends Command {
     static cmd: string = "ls";
     static description: string = "Date Description";
 
-    public action() {
-        console.log("xablau");
+    async action(): Promise<void> {
+
+        this.println("Iniciando....");
+        const resposta = await this.prompt("xablau");
+        this.println("vc respondeu! com " + resposta);
+
+
+        const respostab = await this.prompt("xablau");
+        this.println("vc respondeu! com " + respostab);
     }
+
 }
