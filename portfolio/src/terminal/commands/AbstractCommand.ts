@@ -1,23 +1,4 @@
-export interface AbstractCommandProps {
-    cmd: string;
-    description: string;
-}
-
-export interface TerminalInterface {
-    showPrompt: boolean;
-    setShowPrompt: React.Dispatch<React.SetStateAction<boolean>>;
-    setOutputValue: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
-    println: (content: string | JSX.Element, newline?: boolean) => void;
-    cmds: typeof Command[];
-    cmdList: { [key: string]: typeof Command };
-    currentCmd: null | Command;
-    parameters: string;
-    fullcmd: string;
-    username: string;
-    history: string[];
-    currentPath: string;
-    workDir: string;
-}
+import { TerminalInterface } from "../Terminal"
 
 export interface CommandProps {
     terminal: TerminalInterface;
@@ -25,13 +6,15 @@ export interface CommandProps {
 
 export type SetOutputValueFunction = React.Dispatch<React.SetStateAction<string>>;
 
-abstract class Command {
+abstract class AbstractCommand {
 
     protected terminal: TerminalInterface;
     protected inputs: Array<string> = [];
 
     static cmd: string = "";
     static description: string = "";
+    static help: string = "xabla";
+    static validParameters: Array<string> = []; //@TODO
 
     constructor(terminal: TerminalInterface) {
         this.terminal = terminal;
@@ -50,10 +33,19 @@ abstract class Command {
         this.println("ERROR: Command \"" + this.terminal.fullcmd + "\" with no action!");
     }
 
-    public async run(_parameters?: string): Promise<void> {
-        await this.action(_parameters);
+    public async run(_parameters: string = ""): Promise<void> {
+
+        const cmdClass = this.terminal.cmdList[this.terminal.cmd];
+
+        if (["-h", "--help", "?"].includes(_parameters)) {
+            this.println(cmdClass.help);
+        } else {
+            console.log("await!");
+            await this.action(_parameters);
+            console.log("nao waitou");
+        }
         this.terminal.currentCmd = null;
-        this.terminal.setShowPrompt(true);
+        //this.terminal.setShowPrompt(true);
     }
 
     public newInput(text: string): void {
@@ -68,4 +60,4 @@ abstract class Command {
 
 }
 
-export default Command
+export default AbstractCommand

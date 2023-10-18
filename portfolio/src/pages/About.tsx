@@ -1,3 +1,4 @@
+import TerminalGUI from '../terminal/TerminalGUI';
 import Terminal from '../terminal/Terminal';
 
 import { useState } from 'react'
@@ -50,10 +51,9 @@ function About() {
 
     return (
         <>
-            <Terminal
-                title="Terminal"
-                handleClose={handleClose}
-                rebootTerminal={rebootTerminal}
+            <TerminalGUI
+            //    handleClose={handleClose}
+            //    rebootTerminal={rebootTerminal}
             />
         </>
     )

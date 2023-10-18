@@ -1,12 +1,9 @@
 /**
- * <h2>NotUnix-Terminal</h2>
- * <p>Terminal component is a component that allows you to interact with the system</p>
- * @copyright 2023
- * <a href="https://github.com/abderox">abderox</a>
+ * Based on https://github.com/abderox
  */
 
 import { AppBar, Box, IconButton, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
@@ -15,55 +12,53 @@ import TypingEffect from "./TypingEffect";
 
 import "./index.css";
 
-//Commands
-import { HelpCmd } from "./commands/HelpCmd";
-import { DateCmd } from "./commands/DateCmd";
-import Command, { CommandProps, TerminalInterface } from "./commands/Command";
-import { LsCmd } from "./commands/LsCmd";
-import { ClearCmd } from "./commands/ClearCmd";
-import { WhoAmICmd } from "./commands/WhoAmICmd";
+import Terminal from "./Terminal";
 
-interface TerminalProps {
+interface TerminalGUIProps {
     title?: string;
-    handleClose?: () => void;
-    rebootTerminal?: () => void;
+    canResize?: boolean;
+    //  canMaxMin: boolean;
+    //terminal: Terminal;
+    //  handleClose?: () => void;
+    //  rebootTerminal?: () => void;
 }
 
-const Terminal: React.FC<TerminalProps> = ({
+
+const TerminalGUI: React.FC<TerminalGUIProps> = ({
     title = 'My Terminal',
-    handleClose,
-    rebootTerminal,
 }) => {
 
-    const username = 'Ian';
-    const currentPath = '~';
-    const currentHost = title.toLowerCase().replace(' ', '');
-
-    const getInitInput = (cmmd: string = "") => {
-        const usernameDisplay = username ?? 'guest';
-        const prompt = `>${usernameDisplay}@${currentHost}:${currentPath}$ `;
-        return <span style={{
-            color: 'lime',
-            fontWeight: 'bold',
-            marginRight: '5px',
-        }}>{prompt}{cmmd}</span>;
-    };
-
-    const [terminal, setterminal] = React.useState<TerminalInterface>();
     const [position, setPosition] = React.useState({ x: 0, y: 0 });
     const [showPrompt, setShowPrompt] = React.useState<boolean>(true);
     const [inputValue, setInputValue] = React.useState<string>('');
     const [outputValue, setOutputValue] = React.useState<Array<JSX.Element>>([]);
-    const [lastLogin, setLastLogin] = React.useState(new Date());
+    const [width, setWidth] = React.useState(700);
+    const [height, setHeight] = React.useState(400);
+
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const reff = React.useRef<HTMLDivElement>(null);
-    const [history, setHistory] = React.useState<string[]>([]);
-    const [historyIndex, setHistoryIndex] = React.useState<number>(0);
-    const [width, setWidth] = React.useState(600);
-    const [height, setHeight] = React.useState(400);
+    //const [history, setHistory] = React.useState<string[]>([]);
+    //const [historyIndex, setHistoryIndex] = React.useState<number>(0);
     const draggableRef = React.useRef(null);
     const innerRef = React.useRef(null);
+    const inputRef = useRef(null);
+    //let historyIndex = 0;
+
+    //terminal.setOutputValue = setOutputValue;
+
+
+
+
+    const generatePromptElement = (cmmd: string = "") => {
+        const usernameDisplay = terminal.username ?? 'guest';
+        const prompt = `>${usernameDisplay}@${terminal.currentHost}:${terminal.currentPath}$`;
+        return <span><span style={{
+            color: 'lime',
+            fontWeight: 'bold',
+            marginRight: '5px',
+        }}>{prompt}</span>{cmmd}</span>;
+    };
 
     /**
      * 
@@ -74,12 +69,13 @@ const Terminal: React.FC<TerminalProps> = ({
         const styles: React.CSSProperties = {
             margin: '0',
             display: 'inline',
+            minHeight: '1em',
             whiteSpace: 'pre-wrap',
         };
 
         const formattedContent =
             typeof content === "string"
-                ? <pre style={styles}><TypingEffect speed={20}>{content}</TypingEffect></pre>
+                ? <pre style={styles}><TypingEffect speed={0.5}>{content}</TypingEffect></pre>
                 : content;
 
         const formattedOutput = newline ? <>{formattedContent}<br /></> : formattedContent;
@@ -87,48 +83,42 @@ const Terminal: React.FC<TerminalProps> = ({
         setOutputValue(prevState => [...prevState, formattedOutput]);
     };
 
-    // ? add as many commands as you want
-    /*const mapCommands = new Map([
-        ['help', 'help - list all commands'],
-        ['clear', 'clear - clear the terminal screen'],
-        ['echo', 'echo - echo arguments to the standard output'],
-        ['whoami', 'whoami - print effective username'],
-        ['reload', 'reload - reload the terminal'],
-        ['history', 'history - show the history of commands'],
-        ['clear history', 'clear history - clear the history of commands'],
-        ['date', 'date - print the system date and time'],
-        ['pwp', 'pwd - print name of current/working page'],
-        ['exit', 'exit - cause the shell to exit'],
-        ['reboot', 'reboot - reboot the system'],
-        ['logout', 'logout - logout from the platform'],
-        ['u -r', 'user management - redirection to page'],
-    ]);*/
-
+    const terminal = new Terminal({ username: "xablau", println: println, setOutputValue: setOutputValue });
 
     React.useEffect(() => {
-        setOutputValue([])
-        setHistory([]);
-        setLastLogin(new Date());
-
-        println("Fedora 31 <WorkStation Edition>");
-        println("Kernel 5.3.13-300.fx86_64");
-        println(`Last Login: ${lastLogin}`);
-        println("");
-        println("Welcome to Terminal ! Type \"help\" to see the list of commands.");
-
+        terminal.init();
     }, []);
 
     React.useEffect(() => {
         if (reff.current) {
             reff.current.scrollTop = reff.current.scrollHeight;
         }
-    }, [outputValue]);
+    }, [reff]);
 
     React.useLayoutEffect(() => {
         if (innerRef.current) {
             draggableRef.current = innerRef.current;
         }
     }, [innerRef]);
+
+    React.useEffect(() => {
+        const handleDocumentClick = (event) => {
+            // Verificar se o clique foi fora do input
+            if (inputRef.current && !inputRef.current.contains(event.target)) {
+                // Definir o foco no input
+                inputRef.current.focus();
+            }
+        };
+
+        // Adicionar um event listener ao documento para capturar cliques
+        document.addEventListener('click', handleDocumentClick);
+
+        // Limpar o event listener quando o componente for desmontado
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, []); // O array vazio assegura que o effect é executado apenas uma vez, similar ao componentDidMount
+
 
 
 
@@ -158,171 +148,10 @@ const Terminal: React.FC<TerminalProps> = ({
     }
 
     const handleCloseClick = () => {
-        if (handleClose) {
-            handleClose();
-        }
+        /*    if (handleClose) {
+                handleClose();
+            }*/
     };
-
-    /*
-    * ? add as many methods as you want according to your needs
-    * from here
-     */
-
-    // ? logout from the terminal
-    const handleLogout = () => {
-        //    setMessage(`Logging out... \n`);
-        setTimeout(() => {
-            // some logic like dispatching logout action
-            //    setInitialCommand(`Notlunix\\github\\>guest@${title.toLowerCase().replace(' ', '')}:~$ `);
-        }, 3000);
-    }
-
-    //? reboot the terminal
-    const reboot = () => {
-        //    setMessage(`Rebooting... \n Please be patient...`);
-        if (rebootTerminal) {
-            rebootTerminal();
-        }
-        setTimeout(() => {
-            setInputValue('');
-            setLastLogin(new Date());
-            //     setMessage('');
-        }, 3000);
-    }
-
-    const redirectToPage = (command: string) => {
-        switch (command) {
-            case 'u -r':
-                // navigate to users page
-                return 'Redirecting to users page...';
-            default:
-                return null;
-        }
-    }
-
-    const cmds: typeof Command[] = [
-        HelpCmd,
-        DateCmd,
-        LsCmd,
-        ClearCmd,
-        WhoAmICmd
-    ]
-
-    let cmdList: { [key: string]: typeof Command } = {};
-
-    React.useEffect(() => {
-        let terminal: TerminalInterface = {
-            showPrompt: showPrompt,
-            setShowPrompt: setShowPrompt,
-            setOutputValue: setOutputValue,
-            currentCmd: null,
-            println: println,
-            cmds: cmds,
-            cmdList: cmdList,
-            parameters: "",
-            fullcmd: "",
-            username: username ?? 'Guest',
-            history: history,
-            currentPath: currentPath,
-            workDir: "",
-        }
-        setterminal(terminal);
-    }, []);
-
-
-    //transform in a Class
-
-
-    cmds.forEach((CommandClass: typeof Command) => {
-        cmdList[CommandClass.cmd] = CommandClass;
-    });
-
-    /*
-    * ? handle the command entered by the user
-     */
-    const handleCommand = (promptInput: string) => {
-
-        promptInput = promptInput.trim();
-
-        if (terminal === undefined) {
-            return;
-        }
-
-        if (terminal.currentCmd === null) {
-            println(getInitInput(promptInput));
-            let [command, parameters] = promptInput.split(' ');
-
-            if (promptInput === '') {
-                return;
-            }
-
-            if (!(command in cmdList)) {
-                println(`Command not found: ${command}`);
-                return;
-            }
-            terminal.fullcmd = promptInput;
-            terminal.parameters = parameters;
-
-            const commandClass = cmdList[command] as unknown as HelpCmd as Command as any;
-            terminal.currentCmd = new commandClass(terminal);
-            terminal.setShowPrompt(false);
-            if (terminal.currentCmd !== null) {
-                terminal.currentCmd.run();
-            }
-        } else {
-            terminal.currentCmd.newInput(promptInput);
-        }
-
-
-
-        return;
-
-        if (command.trim() === 'reboot') {
-            reboot();
-            return;
-        }
-        if (command.trim() === 'pwd ') {
-            output += `${window.location.pathname}`;
-            setOutputValue(output);
-            return;
-        }
-        if (command.trim() === 'exit') {
-            output += 'Goodbye!\n';
-            setOutputValue(output);
-            setTimeout(() => {
-                handleCloseClick();
-            }, 1500);
-            return;
-        }
-        if (command.startsWith('echo')) {
-            output += ` ${command.replace('echo', '')}\n`;
-            setOutputValue(prevState => prevState + output);
-            return;
-        }
-        if (command.toLowerCase() === 'whoami') {
-            output += ` ${username ?? 'Guest'}\n`;
-            setOutputValue(prevState => prevState + output);
-            return;
-        }
-
-        if (command.toLowerCase().trim() === ('reload')) {
-            window.location.reload();
-            return;
-        }
-        if (command.toLowerCase().trim() === ('history')) {
-            history.forEach((value, index) => {
-                output += ` ${index} \t\t ${value} \n`;
-            });
-            setOutputValue(prevState => prevState + output);
-            return;
-        }
-        if (command.toLowerCase().trim() === ('clear history')) {
-            setHistory([]);
-            output += ` History cleared\n`;
-            setOutputValue(prevState => prevState + output);
-            return;
-        }
-    }
 
     /*
     * these methods are used to handle the input change and the enter key press and draggability of the terminal, you can modify them according to your needs
@@ -336,14 +165,15 @@ const Terminal: React.FC<TerminalProps> = ({
     const handleEnterKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         switch (event.key) {
             case 'Enter':
-                setHistory(prevHistory => [...prevHistory, inputValue]);
-                setHistoryIndex(history.length);
-                handleCommand(inputValue);
+                terminal.history.push(inputValue); // = (prevHistory => [...prevHistory, inputValue]);
+                terminal.historyIndex = history.length;
+                println(generatePromptElement(inputValue));
+                terminal.handleCommand(inputValue);
                 setInputValue('');
                 break;
             case 'Tab':
                 event.preventDefault();
-                const matchingCmd = cmds.find(cmdClass => cmdClass.cmd.startsWith(inputValue));
+                const matchingCmd = terminal.importedCmdClasses.find(cmdClass => cmdClass.cmd.startsWith(inputValue));
                 if (matchingCmd) {
                     setInputValue(matchingCmd.cmd);
                 }
@@ -354,10 +184,10 @@ const Terminal: React.FC<TerminalProps> = ({
                 if (history.length == 0) break;
                 const newIndex =
                     event.key === 'ArrowUp'
-                        ? Math.max(historyIndex - 1, 0)
-                        : Math.min(historyIndex + 1, history.length - 1);
-                setHistoryIndex(newIndex);
-                setInputValue(history[newIndex]);
+                        ? Math.max(terminal.historyIndex - 1, 0)
+                        : Math.min(terminal.historyIndex + 1, history.length - 1);
+                terminal.historyIndex = newIndex;
+                setInputValue(terminal.history[newIndex]);
                 break;
             default:
                 break;
@@ -438,6 +268,9 @@ const Terminal: React.FC<TerminalProps> = ({
                 boxShadow: '0px 10px 8px rgba(0, 0, 0, 0.3)',
                 transform: `translate(${position.x}px, ${position.y}px)`
             }}>
+
+
+            {/** Terminal title bar  */}
             <Box sx={{
                 backgroundColor: 'transparent',
                 p: 0,
@@ -508,6 +341,8 @@ const Terminal: React.FC<TerminalProps> = ({
                     </Toolbar>
                 </AppBar>
             </Box>
+
+            {/** Terminal-content */}
             <Box className="terminal-content" ref={reff}>
                 <div style={{
                     margin: '0px',
@@ -523,11 +358,14 @@ const Terminal: React.FC<TerminalProps> = ({
                     alignItems: 'center',
                     justifyContent: 'flex-start',
                 }}>
-                    {showPrompt && getInitInput()}
+                    {showPrompt && generatePromptElement()}
                     <div>
                         <input
+                            spellCheck="false"
+                            autoComplete='off'
                             type="text"
                             value={inputValue}
+                            ref={inputRef}
                             name="terminal-input"
                             style={{
                                 border: 'none',
@@ -541,6 +379,7 @@ const Terminal: React.FC<TerminalProps> = ({
                                 margin: '0px',
                                 fontFamily: 'monospace',
                             }}
+                            className="custom-input"
                             onChange={handleInputChange}
                             onKeyDown={handleEnterKeyPress}
                             autoFocus
@@ -548,6 +387,8 @@ const Terminal: React.FC<TerminalProps> = ({
                     </div>
                 </div>
             </Box>
+            {/** Terminal-content - END */}
+
             <div
                 style={{
                     position: 'absolute',
@@ -588,4 +429,4 @@ const Terminal: React.FC<TerminalProps> = ({
     );
 }
 
-export default Terminal;
+export default TerminalGUI;

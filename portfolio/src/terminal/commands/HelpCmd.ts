@@ -1,15 +1,17 @@
-import Command from "./Command"
+import Command from "./AbstractCommand"
 
 
 export class HelpCmd extends Command {
 
     static cmd: string = "help";
     static description: string = "Description for help command";
+    static help: string = "Oi sou dollynho";
 
     public async action(): Promise<void> {
         let mapCommands = new Map<string, string>();
-        for (let index in this.terminal.cmds) {
-            const cmdClass = this.terminal.cmds[index];
+        console.log(this.terminal.cmdList);
+        for (let index in this.terminal.cmdList) {
+            const cmdClass = this.terminal.cmdList[index];
             mapCommands.set(cmdClass.cmd, cmdClass.description);
         };
 

@@ -1,4 +1,4 @@
-import Command from "./Command"
+import Command from "./AbstractCommand"
 
 
 export class ClearCmd extends Command {

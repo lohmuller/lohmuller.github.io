@@ -1,4 +1,4 @@
-import Command, { CommandProps, SetOutputValueFunction, TerminalInterface } from "./Command"
+import Command, { CommandProps, SetOutputValueFunction, TerminalInterface } from "./AbstractCommand"
 
 
 export class LsCmd extends Command {
